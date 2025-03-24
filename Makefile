@@ -5,8 +5,12 @@ pdf:
 	latexmk -shell-escape -pdf main.tex
 
 clean:
-	latexmk -c
+	latexmk -C
 
 all: pdf dvi
+	mkdir -p build
+	cp main.pdf build/.
+	cp main.dvi build/.
 
-all+clean: pdf dvi clean
+all+clean: all clean
+
