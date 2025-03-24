@@ -1,0 +1,12 @@
+# Ignoring some latex outputs artefacts
+*.aux
+*.log
+*.toc
+*.lof
+*.out
+*.fdb_latexmk
+*.fls
+
+# Output files (Added by after)
+*.pdf
+*.dvi
