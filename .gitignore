@@ -10,3 +10,7 @@
 # Output files (Added by after)
 *.pdf
 *.dvi
+
+# build folder
+build*/*
+_minted-main/*

@@ -1,5 +1,25 @@
-First, let's talk about the caracterisation of the engines :
+One of the first steps on this project was to fetch the maximal amount of informations
+about the different sensors and actuator we could.
+Many of this data is given by the datasheet, and the work to validate is minor, but there 
+is case where the datasheet don't provide enough data.
+This force us to measure our proprer data.
 
+We're using three elements in that situation : 
+\begin{itemize}
+    \item The servo engines
+    \item The wings
+    \item The internal ADC of the MCU
+\end{itemize}
+
+Two of them are electrical devices and can easily be characterized.
+We're now going to show some of this data :
+
+\section{Characterization of the servo engines}
 \input{chapters/carac/part1/carac-servo.tex}
-\input{chapters/carac/part2/carac-wings.tex}
+
+\section{Characterization of the ADC}
 \input{chapters/carac/part3/carac-ADC.tex}
+
+\section{Characterization of the servo engines}
+\input{chapters/carac/part2/carac-wings.tex}
+
