@@ -31,13 +31,23 @@ Devicetrees are written in plain text, and there can be only a single file used 
 a given time. Theses files use the extension ".dts". This main file contain the root, also named "/", 
 as any UNIX filesystem. Then, we add "folders", which are named nodes to it. Nodes can be 
 nested inside others to make the code cleaner. Theses are sometimes called sub-nodes. And inside nodes, 
-there is some properties, that can be seen as a variable that configure one aspect.
+there is some properties, that can be seen as a variable that configure one aspect\footnote{
+    Properties can be accessed by the software, thus they may not describe an hardware caracteristic but
+    some boundaries imposed by the hardware to the software. This can substitue to \#define macros in plain
+    C.
+}.
 
 As an example, a node may be RAM, and properties are the size, the speed and any other hardware
 parameters.
 
 In correctly designed devicetrees, there shall be one node for each device that can't be detected on 
 runtime. This include I2C slaves.
+
+\paragraph{}
+Each node can get a "compatible" property. This enable a very usefull tool on the compilation step to ensure
+our node is well formed. This property is simply a list of required properties, and they're size. That's a 
+usefull verification tool, because device tree compiler \textit{can't} check for errors. If leaves you in a 
+state with invalid devicetree files, and near nothing to debug it.
 
 \paragraph{}
 We can easily image that theses files will become big, even for simple systems. To give an idea, there is
