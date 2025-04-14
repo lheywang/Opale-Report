@@ -1,0 +1,16 @@
+\section{Configuration using devicetrees}
+Since we're using a microcontroller that is widely available, most of the work with 
+devicetrees has already been done by the manufacturer.
+
+Thus, we don't need to care about memory, cpus, or other internals details of the
+peripherals. We only enable and configure the required peripherals.
+
+\paragraph{}
+To make the structure cleaner, we've used a lot of overlays, because it's much easier
+to debug and find the right property when needed.
+
+\subsection{Main overlays}
+
+\subsection{Peripherals overlays}
+\subsubsection{PWM configuration}
+\subsubsection{I2C configuration}
