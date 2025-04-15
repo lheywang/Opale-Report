@@ -15,16 +15,7 @@
 \usepackage{circuitikz}
 \usepackage{pgfplots}
 \usepackage{biblatex}
-
-
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
-}
-
+\usepackage{epstopdf}
 \usepackage[	a4paper,
 				top=25mm,	
 				bottom=15mm,
@@ -37,13 +28,24 @@
 				monthdaysep={.}]{datetime2}
 
 \usepackage{tikz}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
 \usetikzlibrary{fit}
+\usetikzlibrary{external}
+\tikzexternalize
+
 
 % Custom variables
 \def\SimWidth{18cm}
 \def\SchematicWidth{12cm}
 \def\SmallSchematicWidth{7cm}
-
 
 % use the header and footer 
 \pagestyle{fancy}
@@ -52,3 +54,6 @@
 \author{Heywang Léonard - Charles Paolo}													
 \title{Rapport de TP de Traitement du Signal}													
 \date{\DTMtoday}
+
+\epstopdfsetup{outdir=./build/images/}
+\epstopdfsetup{suffix=}
