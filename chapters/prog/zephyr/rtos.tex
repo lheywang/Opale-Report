@@ -1,0 +1,75 @@
+\section{RTOS}
+For this second part, we'll go a bit higher in the software structure of the project, and see the different
+layers. The first layer is the one we'll describe here, which is the RTOS.
+
+This stand for Real Time Operating System.
+
+    \quote{A real-time operating system (RTOS) is an operating system (OS) for real-time 
+    computing applications that processes data and events that have critically defined 
+    time constraints. A RTOS is distinct from a time-sharing operating system, such as 
+    Unix, which manages the sharing of system resources with a scheduler, data buffers, 
+    or fixed task prioritization in multitasking or multiprogramming environments. All 
+    operations must verifiably complete within given time and resource constraints or 
+    else fail safe. Real-time operating systems are event-driven and preemptive, meaning 
+    the OS can monitor the relevant priority of competing tasks, and make changes to 
+    the task priority.}
+    \cite{RTOS}
+
+\paragraph{}
+Thus, we're able to specify strict time constraints for different threads. This is very usefull, since it
+enable us to ensure the controller, designed for a specific sampling rate will iterate at a defined speed.
+
+\subsection{Basic RTOS concepts}
+To match they're requirements, near all of the RTOS define some basic concepts, such as :
+
+\begin{itemize}
+    \item A scheduler (that may be able to preempt a task)
+    \item Some communication protocols :
+    \begin{itemize}
+        \item Queues
+        \item Messages
+        \item events
+    \end{itemize}
+    \item Tasks (which include a priority flag !)
+\end{itemize}
+
+\subsubsection{Scheduler}
+This is the main aspect of the RTOS, because this the task responsible to schedule other tasks, 
+while ensuring real times constraints. There's a lot of different architecture here, each adding
+it's own set of positives or negatives aspects.
+
+\subsubsection{Communication protocols}
+For this second concepts, we need to present the differents ways to send data from one task to the 
+other.
+
+Since we're running multiple task in parallel, we can't define which instruction will be executed 
+before another on another task. Thus, standard memory transfers, based on variables and pointers 
+become unreliable.
+In fact, most of the RTOS block theses kind of transfers !\footnote{
+    The name may be different from one RTOS to the other, but the concepts remains the same. 
+    Here, we used the Zephyr RTOS naming convension, as we used this RTOS by after.
+}
+
+Thus, we're forced to use thread-safe memory transfers, which are based on buffers, FIFOs and other
+principle. Since the RTOS manage theses, it can enable, or disable some operations on the shared buffer.
+This is done to ensure memory safety during the execution of the program.
+
+There's indeed multiple type of transfers, depending the needs.
+The first, Queues are FIFOs, and able to transfers large amount of data while ensuring the order. The 
+drawback of them is they're memory footprint which can be quite large.
+
+The second ones are similar, but only enable a small amount of data to be transfered. And, as opposed
+to the FIFOs, when we overwrite the data, it's deleted rather than pushed on the Queue. It's memory
+footprint is similar as the size of a single object, but, it won't enable the conservations of previous
+sample. Thus, we may skip data.
+
+The last one are Events, which are simply bit. We flip them, to notify a thread that something can, or
+can't be done.
+
+\subsubsection{Tasks}
+The last concept is the Task. This correspond to a thread that is going to be executed on the CPU.
+For example, a task may be the main as we know.
+
+Since tasks are handled by the RTOS, it's possible to run multiple tasks in parallel, making control 
+logic simpler. Thus, the timing logic (Timestamps...) can be removed, and replaced by a delay. The RTOS 
+will then pause the task and execute another for the required duration.

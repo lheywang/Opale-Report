@@ -1,0 +1,50 @@
+\section{Drivers}
+Next in the hierarchy, we found the drivers. This codes are used to prevent from the
+user to perform low-level IO, which are error prones.
+
+\paragraph{}
+All of them are written by the manufacturer or the chip, in our case, Nordic
+Semiconductors.
+Theses contain mostly definitions about structures passed to the driver to 
+configure an element, of function that we may call.
+
+\subsection{Calling the driver}
+Theses drivers can be called by two distinct ways : 
+\begin{itemize}
+    \item From bare-metal code
+    \item From Zephyr RTOS drivers, who redirect calls to the bare-metal code
+\end{itemize}
+
+The second method is the safest, in the manner that the RTOS handle the request for us, 
+but, to ensure compatibility with a lot of chips, it can't provide exact same options as
+the bare metal driver.
+
+That's why we used both, mostly the Zephyr one were we could.
+
+\subsection{Driver usage}
+\subsubsection{Bare metal}
+To give an example of the driver beeing used, there is the initialization code the ADC module 
+
+\inputminted[linenos, firstline=103, lastline=112]{cpp}{data/code/C/saadc.cpp}
+
+This code is responsible for the configuration of some advanced behaviors of the ADC peripheral,
+such as setting it's resolution, callback function and so.
+Calls are here quite long, because of the different structs that need to be configured, defined,
+and applied for each aspect.
+
+\subsubsection{Zephyr}
+
+On the other hand, here the example for the Zephyr driver being called.
+This is much simpler, because we're here calling the Zephyr Driver that handle a lot of the work 
+for us, based on the devicetree !
+
+\inputminted[linenos, firstline=100, lastline=102]{cpp}{data/code/C/servo.cpp}
+
+We just need to care about the pulse length we want to set. All the other parameters were defined
+when the kernel was booting.
+
+
+
+
+
+

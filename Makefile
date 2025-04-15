@@ -1,8 +1,12 @@
 pdf:
+	@mkdir -p build/
+	@mkdir -p build/images/
+	@mkdir -p build/chapters
 	latexmk -shell-escape -pdf main.tex
 
 clean:
 	@latexmk -C
+	@rm -r build/images/
 	@echo "--------------------------------------------------------------------------"
 	@echo " Cleaned build files !                                                    "
 	@echo "--------------------------------------------------------------------------"

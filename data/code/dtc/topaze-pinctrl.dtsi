@@ -1,0 +1,62 @@
+/* ============================================================
+ * This file is the overlay DTS for topaze.
+ *
+ * We describe here the peripherals configuration, and so on...
+ *
+ * To simplify this process, I used multiples files that are
+ * included, and define a single peripheral. This make the
+ * reading easier !
+ *
+ * l.heywang
+ * 18/02/2025
+ *
+ * ============================================================
+ */
+
+// peripheral files
+// PWM
+#include "topaze-pwm-servo.dtsi"
+#include "topaze-pwm-rgb.dtsi"
+#include "topaze-pwm-buzzer.dtsi"
+#include "topaze-pwm-parachute.dtsi"
+
+// GPIOS
+#include "topaze-gpio.dtsi"
+#include "topaze-inputs.dtsi"
+#include "topaze-outputs.dtsi"
+#include "topaze-interrupts.dtsi"
+
+// UARTS
+#include "topaze-serial-debug.dtsi"
+#include "topaze-serial-gps.dtsi"
+#include "topaze-serial-imu.dtsi"
+
+// I2C
+#include "topaze-I2C.dtsi"
+
+// SPI
+#include "topaze-SPI.dtsi"
+
+// ADC
+#include "topaze-saadc.dtsi"
+
+// USB
+#include "topaze-usb.dtsi"
+
+/*
+ * Note about enabling devices : 
+ * Each group of serial peripherals share a single address :
+ * SPIn / I2Cn UARTn (n = 0-3)
+ * + SPI4
+ *
+ * This mean that we can't enable more than theses serial peripherals on the chip.
+ * 
+ * SPI4 -> EEPROM
+ * I2C3 -> I2C bus
+ * UART0 -> DEBUG / LOGS
+ * UART1 -> IMU
+ * UART2 -> GPS
+ *
+ * Other options are possible, but the SPI bus shall be reserved to
+ * SPI4, since this peripheral is only capable of SPI.
+ */

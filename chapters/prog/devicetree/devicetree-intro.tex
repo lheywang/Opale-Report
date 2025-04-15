@@ -1,0 +1,65 @@
+\section{Introduction to devicetrees}
+First, we need to explain what is a devicetree, because that's actually far from begin clear and easy to understand.
+The wikipedia article describe it concisely, here a quotation :
+
+    \quote{In computing, a devicetree (also written device tree) 
+    is a data structure describing the hardware components of 
+    a particular computer so that the operating system's kernel 
+    can use and manage those components, including the CPU or CPUs, 
+    the memory, the buses and the integrated peripherals.}
+    \cite{devicetree}
+
+\paragraph{}
+So, we know that we're going to found some hardware description in theses files. Theses kind of files are 
+commonly used on the Linux kernel for this purpose, on hardware that is much faster than our small 
+microcontroller. 
+This way of describing hardware, even if it's quite difficult to get it rigth enable some extremely smart
+options, such as dynamic reconfiguration.
+
+\paragraph{}
+In fact, for other controllers we're supposed to bind pins by hand by correctly assigning register values.
+This is easy to develop, but once you want to change something, it become difficult to not make mistake by 
+misreading a value.
+This problem is solved with devicetrees, since they store hardware config for ourselves. And, they can 
+even store multiple configuration, and offer the option to switch at compile time.
+
+It's then possible to develop a devicetree for the development board, and for the final board, and within
+one parameter change between them !
+
+\paragraph{}
+Devicetrees are written in plain text, and there can be only a single file used for the compilation at 
+a given time. Theses files use the extension ".dts". This main file contain the root, also named "/", 
+as any UNIX filesystem. Then, we add "folders", which are named nodes to it. Nodes can be 
+nested inside others to make the code cleaner. Theses are sometimes called sub-nodes. And inside nodes, 
+there is some properties, that can be seen as a variable that configure one aspect\footnote{
+    Properties can be accessed by the software, thus they may not describe an hardware caracteristic but
+    some boundaries imposed by the hardware to the software. This can substitue to \#define macros in plain
+    C.
+}.
+
+As an example, a node may be RAM, and properties are the size, the speed and any other hardware
+parameters.
+
+In correctly designed devicetrees, there shall be one node for each device that can't be detected on 
+runtime. This include I2C slaves.
+
+\paragraph{}
+Each node can get a "compatible" property. This enable a very usefull tool on the compilation step to ensure
+our node is well formed. This property is simply a list of required properties, and they're size. That's a 
+usefull verification tool, because device tree compiler \textit{can't} check for errors. If leaves you in a 
+state with invalid devicetree files, and near nothing to debug it.
+
+\paragraph{}
+We can easily image that theses files will become big, even for simple systems. To give an idea, there is
+arround one thousand of lines just for our simple microcontroller !
+
+Thus, the developpers of Device Tree Compilers managed to create an include syntax, based on overlays files
+(".dts\textbf{i}"). Theses are included by after and contain only the code for a single peripheral.
+Then, we include them over the main devicetree file. 
+
+If the new nodes were not present, they're added to the main code. If they were already existing, the new 
+file will overhide properties. 
+It's always the latest added that take the priority.
+
+
+
