@@ -14,3 +14,6 @@
 # build folder
 build*/*
 _minted-main/*
+
+#Hidden folder
+.*/
