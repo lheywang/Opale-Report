@@ -98,10 +98,10 @@ Each device can has some properties, such a compatible, status and reg propertie
 correspond to it's address on the bus ! Thus, we don't care about such details on the software, we communicate
 with a sensor, not a peripheral on some address.
 
-\section{Final words}
+\subsection{Final words}
 To conclude this part, let's resume a bit the devicetree files. Theses are used for hardware related configuration, 
 and expose some options that may be used to directly configure the registers of an IC, or be exposed to a C or C++ 
-as constants for more advanced usage.
+as constants for more advanced usage. They're used by the underlying OS on the MCU while the pre-kernel boot.
 
 Theses files are complex to write, but can be used to configure precisely the differents hardware while reducing 
 user errors.
