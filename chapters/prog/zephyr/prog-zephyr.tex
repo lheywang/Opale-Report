@@ -9,7 +9,7 @@ a lot of others files, including devicetrees to describe the hardware.
 This image represent the different steps to build an executable image for our chip
 \begin{figure}[!hbt]
     \centering
-    \includegraphics[width=\SchematicWidth]{images/Zephyr/ZephyrBuild.eps}
+    \includegraphics[width=\SchematicWidth]{\Images/Zephyr/ZephyrBuild.eps}
     \caption{Thread management on the Zephyr RTOS}
 \end{figure}
 \FloatBarrier
@@ -20,7 +20,7 @@ exploit a peripheral, we need to enable it in hardware, but we also need the ass
 drivers with it.
 
 To give an example, this kind of files look like : 
-\inputminted[linenos, firstline=32, lastline=70]{kconfig}{data/code/cfg/prj.conf}
+\inputminted[linenos, firstline=32, lastline=70]{kconfig}{\Conf/prj.conf}
 
 Thats basically a list of variable that we set to enable, or disable a software driver.
 
@@ -31,7 +31,7 @@ task as self-scheduling.
 
 \begin{figure}[!hbt]
     \centering
-    \includegraphics[width=\SchematicWidth]{images/Zephyr/ThreadMGNT.eps}
+    \includegraphics[width=\SchematicWidth]{\Images/Zephyr/ThreadMGNT.eps}
     \caption{Build chain for Zephyr RTOS}
 \end{figure}
 \FloatBarrier

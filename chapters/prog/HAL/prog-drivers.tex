@@ -25,7 +25,7 @@ That's why we used both, mostly the Zephyr one were we could.
 \subsubsection{Bare metal}
 To give an example of the driver beeing used, there is the initialization code the ADC module 
 
-\inputminted[linenos, firstline=103, lastline=112]{cpp}{data/code/C/saadc.cpp}
+\inputminted[linenos, firstline=103, lastline=112]{cpp}{\Code/peripherals/saadc/saadc.cpp}
 
 This code is responsible for the configuration of some advanced behaviors of the ADC peripheral,
 such as setting it's resolution, callback function and so.
@@ -38,7 +38,7 @@ On the other hand, here the example for the Zephyr driver being called.
 This is much simpler, because we're here calling the Zephyr Driver that handle a lot of the work 
 for us, based on the devicetree !
 
-\inputminted[linenos, firstline=100, lastline=102]{cpp}{data/code/C/servo.cpp}
+\inputminted[linenos, firstline=100, lastline=102]{cpp}{\Code/devices/servo/servo.cpp}
 
 We just need to care about the pulse length we want to set. All the other parameters were defined
 when the kernel was booting.

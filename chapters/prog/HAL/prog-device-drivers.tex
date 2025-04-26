@@ -21,7 +21,7 @@ For example, the driver for the IMU was entirely wrote by Bosch, which require u
 write only the communication functions !
 
 This look like :
-\inputminted[linenos, firstline=19471, lastline=19515]{cpp}{data/code/C/bno055.cpp}
+\inputminted[linenos, firstline=19471, lastline=19515]{cpp}{\Code/drivers/bno055/bno055.cpp}
 
 And, that's done for the driver !
 
@@ -32,7 +32,7 @@ An lot of work was needed to ensure this driver is correctly working.
 In the previous code section, the manufacturer provided a write and read functions to be
 called. It only required us to fill them.
 
-\inputminted[linenos, firstline=292, lastline=330]{cpp}{data/code/C/teseo.cpp}
+\inputminted[linenos, firstline=292, lastline=330]{cpp}{\Code/drivers/teseo/teseo.cpp}
 
 Hopefully, manufacturer provided us some functions to check if a command was well 
 formed, to match the checksum, as well as some parsers to identify the different 
@@ -51,7 +51,7 @@ smaller chips, which make the develop quite straightforward.
 For example, the only driver we needed to develop like that was for the temperature
 sensor.
 
-\inputminted[linenos, firstline=119, lastline=158]{cpp}{data/code/C/MS5611.cpp}
+\inputminted[linenos, firstline=119, lastline=158]{cpp}{\Code/drivers/ms5611/MS5611.cpp}
 
 This driver include all of the calculations needed for temperature corrections
 needed to match the precision. Theses are indeed affected by temperature, 
