@@ -1,1 +1,39 @@
 \paragraph{}
+This document cover the Opale project, which took place in the context inside the Master SEME
+on the univeristy of Strasbourg.
+
+\paragraph{}
+This project was started on the first semester, by november 2024. The goal was to develop a 
+small scale rocket that modelize the behavior of real ones. This model include the usage 
+of powder engines, as well as come control electronics embedded into the rocket.
+
+\paragraph{}
+For all along this report, we're going to describe all the reflexions, studies, and conception.
+Since we're Electronics Engineering students, we'll focus more on the electronics and sofware aspects, 
+but the mechanical part will also quicly be explained.
+The goal with the control electronics is to ensure the rocket will follow a defined trajectory, as 
+well as storing into an EEPROM some measurements for an after fly interpretation.
+
+The rocket can be modelled as a complex system, composed with multiples blocks : 
+
+\begin{itemize}
+    \item   Sensors (positionning, temperature...)
+    \item   Outputs (Servos engines control, engine starter...)
+    \item   Controller (MCU + Memory)
+    \item   Power supplies
+\end{itemize}
+
+\paragraph{}
+This report will be splitted in multiples parts, that are not ordered in a chronological order, but 
+more in a logic way.
+
+\paragraph{}
+In the first time, we're going to look at the measures we done on the different sensors and actuators, to understand
+how they respond to our inputs, what points are importants, and so.
+A mechanical part will follow this first part, we're we describe some mechanical structure of the rocket. 
+In a third part, we're going to look at the control theory we've done on the rocket, to design the 
+controller algorithms. This is extensively done on simulation.
+Next, we're going to dig into the electronic design, which include the design of an printed
+circuit board with all of our sensors, actuators, and so.
+Rigth after, a part with all of the programming steps will show how the MCU is configured, and how we structured the 
+controller to ensure a precise response, as well as some security functions.
