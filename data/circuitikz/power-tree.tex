@@ -1,0 +1,63 @@
+\begin{figure}[!ht]
+    \centering
+    \resizebox{1\textwidth}{!}{%
+        \begin{circuitikz}
+            \tikzstyle{every node}=[font=\normalsize]
+            \draw (3.75,9.75) to[short, -o] (2.5,9.75) node[left] {Vbatt (pyro)};
+            \draw (3.75,14.75) to[battery ] (3.75,12.25);
+            \draw (3.75,9.75) to[battery ] (3.75,7.25);
+            \draw (3.75,19.75) to[battery ] (3.75,17.25);
+            \draw (6.25,19.75) to[D] (8.75,19.75);
+            \draw (3.75,14.75) to[short] (10,14.75);
+            \draw (3.75,19.75) to[short] (6.25,19.75);
+            \draw (8.75,19.75) to[short] (10,19.75);
+            \draw (10,19.75) to[short] (10,14.75);
+            \draw (3.75,17.25) to (3.75,16.5) node[ground]{};
+            \draw (3.75,12.25) to (3.75,11.5) node[ground]{};
+            \draw (3.75,7.25) to (3.75,6.5) node[ground]{};
+            % Start Dual inline chip
+            \foreach \x in {0,...,1}{
+            \pgfmathtruncatemacro\y{\x + 1}
+            \pgfmathtruncatemacro\z{\x + 3}
+            \draw  (12,19.75-\x/2) -- ++(0.5,0);
+            \draw  (14.25,19.75-\x/2) -- ++(0.5,0);
+            \node [font=\tiny, align=left] at (12.75, 19.75-\x/2) {\y};
+            \node [font=\tiny, align=left] at (14, 19.75-\x/2) {\z};
+            }
+            \draw  (12.5,20.25-\x/2) rectangle   (14.25,18.75-\x/2);
+            \draw  (13.625,20.25-\x/2) arc [start angle=0, end angle=-180, radius=0.25cm];% End Dual inline chip
+            
+            % Start Dual inline chip
+            % End Dual inline chip
+            
+            % Start Dual inline chip
+            \foreach \x in {0,...,1}{
+            \pgfmathtruncatemacro\y{\x + 1}
+            \pgfmathtruncatemacro\z{\x + 3}
+            \draw  (12,9.75-\x/2) -- ++(0.5,0);
+            \draw  (14.25,9.75-\x/2) -- ++(0.5,0);
+            \node [font=\tiny, align=left] at (12.75, 9.75-\x/2) {\y};
+            \node [font=\tiny, align=left] at (14, 9.75-\x/2) {\z};
+            \draw  (12.5,10.25-\x/2) rectangle   (14.25,8.75-\x/2);
+            \draw  (13.625,10.25-\x/2) arc [start angle=0, end angle=-180, radius=0.25cm];% End Dual inline chip
+            }
+            
+            \draw (12,19.75) to[short] (10,19.75);
+            \draw (15,19.75) to[short, -o] (16.25,19.75) node[right] {MCU supply};
+            \node at (10,19.75) [circ] {};
+            \draw (12,9.75) to[short] (3.75,9.75);
+            \draw (15,9.75) to[short, -o] (16.25,9.75) node[right] {Servo supply};
+            \draw [dashed] (10,14.75) -- (10,9.75);
+            \draw [dashed] (10,12.5) -- (15,12.5);
+            \draw [dashed] (15,12.5) -- (15,9.75);
+            \draw (12,9.25) to (12,7.75) node[ground]{};
+            \draw (15,9.25) to (15,7.75) node[ground]{};
+            \draw (12,19.25) to (12,18) node[ground]{};
+            \draw (15,19.25) to (15,18) node[ground]{};
+            \draw (3.75,19.75) to[short, -o] (2.5,19.75) node[left] {Vbus (5V)};
+            \draw (3.75,14.75) to[short, -o] (2.5,14.75) node[left] {Vbatt};
+        \end{circuitikz}
+    }  
+    \label{fig:power-tree}
+\end{figure}
+\FloatBarrier
