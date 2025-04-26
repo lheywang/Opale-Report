@@ -1,0 +1,23 @@
+\begin{figure}[!hbt]
+        \centering
+        \resizebox{1\textwidth}{!}{%
+        \begin{circuitikz}
+        \tikzstyle{every node}=[font=\normalsize]
+        \draw [ fill={rgb,255:red,195; green,232; blue,235} ] (8.75,14.75) rectangle  node {\LARGE MCU + Memory} (17.5,1);
+        \draw [ fill={rgb,255:red,233; green,235; blue,199} ] (2.5,14.75) rectangle  node {\normalsize Sensors } (6.25,8.5);
+        \draw [ fill={rgb,255:red,162; green,199; blue,179} ] (2.5,7.25) rectangle  node {\normalsize Users inputs} (6.25,1);
+        \draw [ fill={rgb,255:red,236; green,195; blue,195} ] (8.75,19.75) rectangle  node {\normalsize Power supplies + Power managements IC (PMIC)} (17.5,17.25);
+        \draw [ fill={rgb,255:red,218; green,187; blue,217} ] (20,14.75) rectangle  node {\normalsize Actuators} (23.75,11);
+        \draw [ fill={rgb,255:red,158; green,148; blue,213} ] (20,9.75) rectangle  node {\normalsize USB Debug port} (23.75,6);
+        \draw [ fill={rgb,255:red,158; green,148; blue,213} ] (20,4.75) rectangle  node {\normalsize User outputs} (23.75,1);
+        \draw [->, >=Stealth] (6.25,4.75) -- (8.75,4.75);
+        \draw [->, >=Stealth] (6.25,11) -- (8.75,11);
+        \draw [->, >=Stealth] (17.5,12.25) -- (20,12.25);
+        \draw [->, >=Stealth] (17.5,8) -- (20.25,8);
+        \draw [->, >=Stealth] (17.5,3.5) -- (20,3.5);
+        \draw [->, >=Stealth] (13,17.25) -- (13,14.75);
+        \end{circuitikz}
+        }%
+        
+        \label{fig:functionnel}
+        \end{figure}
