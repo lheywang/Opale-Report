@@ -1,5 +1,37 @@
 When starting the project, one of the first points was to choose components. But, 
 why this one ? And not the other ? Let's dig into the hardware choices we made here !
 
+\section{Servo engines}
+The first component we need to choose were the servo engines. Theses are responsible
+of the position of the wings outside of the rocket.
+Our criterions were :
+\begin{itemize}
+    \item   Minimal error on the control position, ideally with a position feedback.
+    \item   Fast enough response.
+    \item   Strong enough to resist to the air pressure.
+    \item   Small enough to be placed inside of the rocket.
+\end{itemize}
+
+We considered the servos listed on the \ref{tab:servo_list} table.
+
 \input{\Tables/list_servo.tex}
+
+Our selection end up on the KPower servo engine, because of their availabily on well known
+retailers and specs that are enough for our needs.
+
+\section{MCUs}
+The second component that required a bit selection was the MCU, the microcontroller that
+will control everything. We didn't needed a ton of computing power, but we needed some 
+advanced peripherals, and eventually an 2.4 GHz radio interface for a remote Bluetooth
+control.
+
+We considered theses MCUs, listed on the \ref{tab:mcu_list} table
+
 \input{\Tables/list_mcu.tex}
+
+Our choice end up on the nRF5340 IC, because it has enough computing power for our need 
+(and it has two cores !) and some advanced peripherals interconnects (such as PPI, which 
+enable us to connect peripherals between them to create logic conditions !).
+But there where another fact : It has an excellent software support and documentation, 
+which are going to help us a lot. That was mainly this point that make us select this chip, 
+compared to the other options which where less documented.
