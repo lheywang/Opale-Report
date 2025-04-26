@@ -2,6 +2,7 @@ pdf:
 	@mkdir -p build/
 	@mkdir -p build/images/
 	@mkdir -p build/chapters
+	git submodule update
 	latexmk -shell-escape -pdf main.tex
 
 clean:
@@ -18,3 +19,7 @@ all: pdf
 
 all+clean: all
 	@latexmk -c
+
+install:
+	@cd data/code & git submodule add https://github.com/lheywang/Opale.git
+
