@@ -1,0 +1,33 @@
+% Defining some custom commands here...
+
+% Custom variables
+\def\SimWidth{18cm}
+\def\SchematicWidth{12cm}
+\def\SmallSchematicWidth{7cm}
+
+% Standard paths
+\def\Images{images}
+\def\Config{config}
+\def\Schematics{data/circuitikz}
+\def\Drawings{data/tikz}
+\def\Timings{data/timings}
+\def\Tables{data/tables}
+\def\Code{data/code}
+\def\Src{chapters}
+
+% Tikz timings
+\usepackage{xparse} % NewDocumentCommand, IfValueTF, IFBooleanTF
+
+% Reference a bus.
+%
+% Usage:
+%
+%     \busref[3::0]{C/BE}    ->   C/BE[3::0]
+%     \busref*{AD}           ->   AD#
+%     \busref*[3::0]{C/BE}   ->   C/BE[3::0]#
+%
+\NewDocumentCommand{\busref}{som}{\texttt{%
+#3%
+\IfValueTF{#2}{[#2]}{}%
+\IfBooleanTF{#1}{\#}{}%
+}}
