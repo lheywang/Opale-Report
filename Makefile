@@ -2,8 +2,8 @@ pdf:
 	@mkdir -p build/
 	@mkdir -p build/images/
 	@mkdir -p build/chapters
-	git submodule update
-	latexmk -shell-escape -pdf main.tex
+	@latexmk -shell-escape -pdf main.tex
+	@\cp build/main.pdf .
 
 clean:
 	@latexmk -C
@@ -13,8 +13,12 @@ clean:
 	@echo "--------------------------------------------------------------------------"
 
 all: pdf
+	@git submodule update
 	@echo "--------------------------------------------------------------------------"
-	@echo " Generated .pdf files into the build/ folder !                   "
+	@echo " Updated code files (Reminder : Make sure to update the code lines marker "
+	@echo "     with \inputminted commands, or some functions may now be incomplete!)"
+	@echo "                                                                          "
+	@echo " Generated PDF files and copied into the base folder !"
 	@echo "--------------------------------------------------------------------------"
 
 all+clean: all
