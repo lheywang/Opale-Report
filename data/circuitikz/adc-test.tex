@@ -1,6 +1,6 @@
 \begin{figure}[!hbt]
     \centering
-
+    \resizebox{\SchematicWidth}{!}{%
     \begin{circuitikz}
         % ---------------------------------------------------------------------------
         % Draw components
@@ -36,7 +36,7 @@
         \draw (Mux.blpin 7) to[short, -o]    ++(-1,0);
         \draw (Mux.blpin 8) to[short, -o]    ++(-1,0);
         
-    \end{circuitikz}
+    \end{circuitikz}}
     
     \caption{Schematic used for testing response of the ADC core of the MCU}
     \label{fig:ADC_test}

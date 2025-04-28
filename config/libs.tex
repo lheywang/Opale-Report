@@ -28,6 +28,7 @@
 				monthdaysep={.}]{datetime2}
 
 \usepackage{tikz}
+\usepackage{tikz-timing}
 
 \hypersetup{
     colorlinks,
@@ -41,12 +42,6 @@
 \usetikzlibrary{external}
 \tikzexternalize
 
-
-% Custom variables
-\def\SimWidth{18cm}
-\def\SchematicWidth{12cm}
-\def\SmallSchematicWidth{7cm}
-
 % use the header and footer 
 \pagestyle{fancy}
 
@@ -55,5 +50,5 @@
 \title{Rapport de TP de Traitement du Signal}													
 \date{\DTMtoday}
 
-\epstopdfsetup{outdir=./build/images/}
+\epstopdfsetup{outdir=./build/\Images/}
 \epstopdfsetup{suffix=}

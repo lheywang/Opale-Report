@@ -1,6 +1,6 @@
 \begin{figure}[!hbt]
     \centering
-
+    \resizebox{\SchematicWidth}{!}{%
     \begin{circuitikz}
         % ---------------------------------------------------------------------------
         % Draw components
@@ -21,7 +21,7 @@
         \draw (motor.right) -- (osc1.left);
         \draw (osc2.left) -- ++(-0.5, 0) -- ++(0,1) node[circ] {};
         
-    \end{circuitikz}
+    \end{circuitikz}}
     
     \caption{Schematic used for testing response of servo engines}
     \label{fig:Servo_test}

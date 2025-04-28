@@ -2,8 +2,8 @@
 \documentclass[twoside]{report}
 
 % Loading configs
-\input{config/libs.tex}
 \input{config/commands.tex}
+\input{\Config/libs.tex}
 
 % Document informations
 \author{Heywang Léonard, Brandstaedt Arthur}													
@@ -16,28 +16,36 @@
 % Document
 \begin{document}
 
-\input{config/title.tex}
-\input{config/header.tex}
+\input{\Config/title.tex}
+\input{\Config/header.tex}
 
 \tableofcontents
 \listoffigures
-% \listoftables
+\listoftables
 
 \newpage
 \chapter{Introduction}
 \input{introduction.tex}
+\chapter{System block diagram}
+\input{BlockDiagram.tex}
+
+\chapter{Component selection}
+\input{\Src/components/components.tex}
 
 \chapter{Caracterisation and measures of actuators}
-\include{chapters/carac/carac.tex}
+\include{\Src/carac/carac.tex}
+
+\chapter{Mechanical design}
+\include{\Src/mechanical/mechanical.tex}
 
 \chapter{Electronic design}
-\include{chapters/electronic/electronic.tex}
+\include{\Src/electronic/electronic.tex}
 
 \chapter{Controller}
-\include{chapters/control/control.tex}
+\include{\Src/control/control.tex}
 
 \chapter{Programmation}
-\include{chapters/prog/prog.tex}
+\include{\Src/prog/prog.tex}
 
 \chapter{Conclusion}
 \input{conclusion.tex}
