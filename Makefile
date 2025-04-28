@@ -25,5 +25,5 @@ all+clean: all
 	@latexmk -c
 
 install:
-	@cd data/code & git submodule add https://github.com/lheywang/Opale.git
+	git clone --recursive https://github.com/lheywang/Opale-Report.git Opale-Report
 
