@@ -5,6 +5,19 @@ pdf:
 	@latexmk -shell-escape -pdf main.tex
 	@\cp build/main.pdf .
 
+compress: pdf
+	@gs \
+		-dNOPAUSE \
+		-dBATCH \
+		-dSAFER \
+		-sDEVICE=pdfwrite \
+		-dCompatbilityLevel=1.4 \
+		-dPDFSETTINGS=/prepress \
+		-dDetectDuplicateImages=true \
+		-dCompressFonts=true \
+		-sOutputFile=build/main_compressed.pdf \
+		build/main.pdf
+
 clean:
 	@latexmk -C
 	@rm -r build/images/
@@ -12,7 +25,7 @@ clean:
 	@echo " Cleaned build files !                                                    "
 	@echo "--------------------------------------------------------------------------"
 
-all: pdf
+all: compress
 	@git submodule update
 	@echo "--------------------------------------------------------------------------"
 	@echo " Updated code files (Reminder : Make sure to update the code lines marker "
