@@ -1,0 +1,53 @@
+\section{Testing and defaults}
+Once the board is finished, we need to test it. And, in our case, the $3.3 \si{\volt}$
+and the GND were in short-circuit. Most of the nets where fine.
+
+To search for the location of the default, we used an electronic magnifying glass.
+We found theses defaults :
+
+\begin{figure}[!hbt]
+    \centering
+    \begin{minipage}[c]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\Images/assembly/default_SOLDER.eps}
+        \caption*{Too much solder}
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[c]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\Images/assembly/default_SOIC.eps}
+        \caption*{Lack of heat n1}
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[c]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{\Images/assembly/default_CAP.eps}
+        \caption*{Lack of heat n2}
+    \end{minipage}%
+    \label{img:defaults}
+    \caption{assembly defaults}
+\end{figure}
+\FloatBarrier
+
+\subsection{Hand soldering default}
+The first default came from the use, when soldering with hand some of the
+capacitor on the back side.
+
+At first, the solder was looking quite good, but, under magnification, we
+found that some contacts where touching between them.
+
+This kind of issues are easily corrected by removing the excess solder,
+with, for example a solder wick.
+
+\subsection{Heating defaults}
+The two last defaults are a bit harder to patch. They come from a lack
+of heat on the board, which didn't make fully melted the solder paste.
+Thus, there is some tin balls on multiple places of the PCB.
+
+This is probably the source of our short circuits, because the nets that
+are in short-circuits are always side by side under the microcontroller.
+
+This kind of defaults can be patched by reheating the board, with enough
+flux.
+
+    [ EDIT : TO BE CORRECTED ! ]
