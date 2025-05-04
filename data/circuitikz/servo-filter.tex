@@ -1,33 +1,33 @@
 \begin{figure}[!ht]
     \centering
     \resizebox{\SchematicWidth}{!}{%
-    \begin{circuitikz}
-    \tikzstyle{every node}=[font=\normalsize]
-    \draw (5,12.25) to[european resistor,l={ \normalsize R1 = 16k$\Omega$}] (7.5,12.25);
-    \draw (8.75,12.25) to[european resistor,l={ \normalsize R2 = 16k$\Omega$}] (11.25,12.25);
-    \draw (15.25,12.75) node[op amp,scale=1] (opamp2) {};
-    \draw (opamp2.+) to[short] (13.75,12.25);
-    \draw  (opamp2.-) to[short] (13.75,13.25);
-    \draw (16.45,12.75) to[short](16.75,12.75);
-    \draw (12.5,12.25) to[C,l={ \normalsize C1 = 100nF}] (12.5,9.75);
-    \draw (8.75,14.75) to[C,l={ \normalsize C2 = 100nF}] (11.25,14.75);
-    \draw (7.5,12.25) to[short] (8.75,12.25);
-    \draw (11.25,12.25) to[short] (13.75,12.25);
-    \draw (8.75,14.75) to[short] (8,14.75);
-    \draw (8,14.75) to[short] (8,12.25);
-    \draw (11.25,14.75) to[short] (17.5,14.75);
-    \draw (17.5,14.75) to[short] (17.5,12.75);
-    \draw (16.75,12.75) to[short] (17.5,12.75);
-    \draw (13.75,13.25) to[short] (12.5,13.25);
-    \draw (12.5,13.25) to[short] (12.5,14.75);
-    \node at (12.5,12.25) [circ] {};
-    \node at (12.5,14.75) [circ] {};
-    \draw (5,12.25) to[short, -o] (3.75,12.25) node[left] {Vin};
-    \draw (17.5,12.75) to[short, -o] (18.75,12.75) node[right] {Vout};
-    \draw (12.5,9.75) to (12.5,9.5) node[ground]{};
-    \end{circuitikz}
+        \begin{circuitikz}
+            \tikzstyle{every node}=[font=\normalsize]
+            \draw (5,12.25) to[european resistor,l={ \normalsize R1 = 16k$\Omega$}] (7.5,12.25);
+            \draw (8.75,12.25) to[european resistor,l={ \normalsize R2 = 16k$\Omega$}] (11.25,12.25);
+            \draw (15.25,12.75) node[op amp,scale=1] (opamp2) {};
+            \draw (opamp2.+) to[short] (13.75,12.25);
+            \draw  (opamp2.-) to[short] (13.75,13.25);
+            \draw (16.45,12.75) to[short](16.75,12.75);
+            \draw (12.5,12.25) to[C,l={ \normalsize C1 = 100nF}] (12.5,9.75);
+            \draw (8.75,14.75) to[C,l={ \normalsize C2 = 100nF}] (11.25,14.75);
+            \draw (7.5,12.25) to[short] (8.75,12.25);
+            \draw (11.25,12.25) to[short] (13.75,12.25);
+            \draw (8.75,14.75) to[short] (8,14.75);
+            \draw (8,14.75) to[short] (8,12.25);
+            \draw (11.25,14.75) to[short] (17.5,14.75);
+            \draw (17.5,14.75) to[short] (17.5,12.75);
+            \draw (16.75,12.75) to[short] (17.5,12.75);
+            \draw (13.75,13.25) to[short] (12.5,13.25);
+            \draw (12.5,13.25) to[short] (12.5,14.75);
+            \node at (12.5,12.25) [circ] {};
+            \node at (12.5,14.75) [circ] {};
+            \draw (5,12.25) to[short, -o] (3.75,12.25) node[left] {Vin};
+            \draw (17.5,12.75) to[short, -o] (18.75,12.75) node[right] {Vout};
+            \draw (12.5,9.75) to (12.5,9.5) node[ground]{};
+        \end{circuitikz}
     }%
-    
+
     \label{fig:servo-filter}
-    \end{figure}
+\end{figure}
 \FloatBarrier

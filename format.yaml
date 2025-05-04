@@ -1,0 +1,4 @@
+modifyLineBreaks:
+    textWrapOptions:
+        columns: 50
+        multipleSpacesToSingle: 1
