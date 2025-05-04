@@ -1,8 +1,8 @@
-The next part to be measured is the ADC. This is an important step, because the ADC is actually 
+The next part to be measured is the ADC. This is an important step, because the ADC is actually
 our eyes on the system regarding the position of the wings (as well some other indicators about
 different power rails on the system).
 
-It's important for us to be confident in it's measure, so we did some measurement on it to identify 
+It's important for us to be confident in it's measure, so we did some measurement on it to identify
 it's limitations and workarounds.
 
 \paragraph{}
@@ -32,12 +32,12 @@ And then, we recorded over a long time (~ 20 mn) the values, and plotted them on
 \end{figure}
 \FloatBarrier
 
-Here, we can clearly see that the ADC does not seems to deviate at all, so that's a good point ! We 
+Here, we can clearly see that the ADC does not seems to deviate at all, so that's a good point ! We
 know that it's transfer function can be expressed as $N = f(V)$ and does not depend on the time.
 
 \FloatBarrier
 \subsection{Non linearity}
-The second parameter to be measured is the linearity of the ADC. We need to know if the response of 
+The second parameter to be measured is the linearity of the ADC. We need to know if the response of
 the ADC is linear. This is important, becase we'll be using the ADC as position sensor.
 
 To measure that, the voltage sources were configured as ramp input, and we recorded output values over
@@ -53,15 +53,15 @@ to the ADC to convert.
 
 \paragraph{}
 The result here is typical from integrated ADC. Theses graphics represent the number of times there was this
-voltage at it's inputs during the test. 
+voltage at it's inputs during the test.
 A perfect ADC shall return the exact same number for all voltages (Since a ramp is by definition linear).
 
 \paragraph{}
 Here, we're not observing that. In the middle of the voltage range, the codes are evenly distributed, which
-mean that the ADC is quite linear here. But on the extreme, we can clearly see two spikes, which means the ADC 
+mean that the ADC is quite linear here. But on the extreme, we can clearly see two spikes, which means the ADC
 isn't able to differentiate voltages here (they will, in any case produce the same code).
 
-This should not cause any issues here, because our return signal is included between $600 \si{\milli\volt}$ 
+This should not cause any issues here, because our return signal is included between $600 \si{\milli\volt}$
 and $2.4 \si{\volt}$, which by chance is in the correct range. Otherwise, it would require some amplification
 or offset to get the needed precision.
 
