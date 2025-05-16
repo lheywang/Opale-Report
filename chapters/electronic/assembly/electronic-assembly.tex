@@ -1,13 +1,13 @@
-For the last part of the electronic chapter, we're going to talk about 
+\section{Soldering}
+For the last part of the electronic chapter, we're going to talk about
 assembly of the board.
 
 The board use complex components, where the packages are BGA, aQFN...
-All of the pitch are in the $0.5 \si{\mu\meter}$ range, thus, it's 
+All of the pitch are in the $0.5 \si{\mu\meter}$ range, thus, it's
 evident that it won't be possible to solder it with an iron.
 
-\section{Used method}
 To solder theses components, we used a technic based on industrial
-processes, which consists of different steps : 
+processes, which consists of different steps :
 
 \begin{itemize}
     \item   Apply some solder pastes on the pads.
@@ -16,11 +16,10 @@ processes, which consists of different steps :
     \item   Let the board cool down.
 \end{itemize}
 
-Solder paste is a mix of tin and flux. It's used to create precision 
+Solder paste is a mix of tin and flux. It's used to create precision
 soldering, since it's much easier to get the rigth volume of tin on a
 point.
 
-\section{Process}
 \subsection{Solder paste application}
 First, we need to apply solder pastes. The smallest pads are round,
 $200 \si{\mu\meter}$ in diameter, and $500 \si{\mu\meter}$ far from the
@@ -29,13 +28,13 @@ other.
 It's then impossible to place solder paste by hand on this pads.
 
 That's why we used a stencil, that we place over the board, and fix in
-place with different tools. Then, we apply some paste on this stencil, and 
+place with different tools. Then, we apply some paste on this stencil, and
 we spread it on the board with something rigid enough.
 
-This will fill the stencil holes with the right volume of paste, and, if 
-correctly placed, right over the pads. Once finished, we remove the stencil, 
+This will fill the stencil holes with the right volume of paste, and, if
+correctly placed, right over the pads. Once finished, we remove the stencil,
 and there shall be right enough paste, we it needs. \footnote{
-    Since the paste is about half flux, getting a bit of paste where it shouldn't 
+    Since the paste is about half flux, getting a bit of paste where it shouldn't
     isn't generally an issue. And, with surface tension of melted tin, it will
     generally flow to the contact without issues.
 }
@@ -44,27 +43,27 @@ and there shall be right enough paste, we it needs. \footnote{
 Once we're satisfied with the paste application, we can start to place components.
 
 This step can be quite long, since it require a lot of application, and concentration.
-Hopefully, there is some tools to make it easier, such as Altium assembly assistant, 
+Hopefully, there is some tools to make it easier, such as Altium assembly assistant,
 which will prompt us which reference goes where, and in which orientation.
 
 This make the placement much faster and right.
 
 Once all components are placed, we inspect them. They need to be precisely placed
 for all of them\footnote{
-    When the board is hot enough, again, the surface tensions of the melted tin will 
-    tend to place the IC by themselves. Imprecisions can be corrected here, for a 
+    When the board is hot enough, again, the surface tensions of the melted tin will
+    tend to place the IC by themselves. Imprecisions can be corrected here, for a
     maximum of half the distance between two pads.
 }. In our board, there is 286 of them !
 
 \subsection{Heating}
-For the final part, we need to heat the board. There is multiple solutions here, 
+For the final part, we need to heat the board. There is multiple solutions here,
 we can do it on a specific furnace on the FabLab, or, with an hotplate at home.
 
-We tried the second solution for the first board. This plate is going to heat to 
-$250 \si{\degree}$, heating the whole board in the same time. All of the paste will 
+We tried the second solution for the first board. This plate is going to heat to
+$250 \si{\degree}$, heating the whole board in the same time. All of the paste will
 melt in the "same" time, and thus all of the solder will be done in one time.
 
-Once finished, we remove the board carrefully of the heating plate, and wait for it 
+Once finished, we remove the board carrefully of the heating plate, and wait for it
 to cool.
 
 All of the process is in photo right below :
@@ -101,57 +100,3 @@ All of the process is in photo right below :
 
 After that whole process, we need to add the few trough hole components, manually.
 This is quite fast, since there is not a lot of them.
-
-\section{Testing and defaults}
-Once the board is finished, we need to test it. And, in our case, the $3.3 \si{\volt}$ 
-and the GND were in short-circuit. Most of the nets where fine. 
-
-To search for the location of the default, we used an electronic magnifying glass.
-We found theses defaults : 
-
-\begin{figure}[!hbt]
-    \centering
-    \begin{minipage}[c]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{\Images/assembly/default_SOLDER.eps}
-        \caption*{Too much solder}
-    \end{minipage}%
-    \hfill%
-    \begin{minipage}[c]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{\Images/assembly/default_SOIC.eps}
-        \caption*{Lack of heat n1}
-    \end{minipage}%
-    \hfill%
-    \begin{minipage}[c]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{\Images/assembly/default_CAP.eps}
-        \caption*{Lack of heat n2}
-    \end{minipage}%
-    \label{img:defaults}
-    \caption{assembly defaults}
-\end{figure}
-\FloatBarrier
-
-\subsection{Hand soldering default}
-The first default came from the use, when soldering with hand some of the 
-capacitor on the back side.
-
-At first, the solder was looking quite good, but, under magnification, we 
-found that some contacts where touching between them. 
-
-This kind of issues are easily corrected by removing the excess solder, 
-with, for example a solder wick.
-
-\subsection{Heating defaults}
-The two last defaults are a bit harder to patch. They come from a lack 
-of heat on the board, which didn't make fully melted the solder paste.
-Thus, there is some tin balls on multiple places of the PCB. 
-
-This is probably the source of our short circuits, because the nets that 
-are in short-circuits are always side by side under the microcontroller.
-
-This kind of defaults can be patched by reheating the board, with enough 
-flux.
-
-[ EDIT : TO BE CORRECTED ! ]

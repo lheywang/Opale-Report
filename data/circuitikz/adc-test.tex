@@ -1,43 +1,42 @@
 \begin{figure}[!hbt]
     \centering
     \resizebox{\SchematicWidth}{!}{%
-    \begin{circuitikz}
-        % ---------------------------------------------------------------------------
-        % Draw components
-        % ---------------------------------------------------------------------------
-        % ADC + MCU + MUX
-        \draw (8,3) node[msport, circuitikz/RF/scale=2](ADC){ADC};
-        \draw (ADC.right) ++(0.5,0) node[twoportshape, anchor=left, t=Core](uC){};
-        \draw (ADC.left) ++(-1.5, 0) node[muxdemux] (Mux) {Mux};
+        \begin{circuitikz}
+            % ---------------------------------------------------------------------------
+            % Draw components
+            % ---------------------------------------------------------------------------
+            % ADC + MCU + MUX
+            \draw (8,3) node[msport, circuitikz/RF/scale=2](ADC){ADC};
+            \draw (ADC.right) ++(0.5,0) node[twoportshape, anchor=left, t=Core](uC){};
+            \draw (ADC.left) ++(-1.5, 0) node[muxdemux] (Mux) {Mux};
 
-        % Vsources
-        \draw (0,0) node[ground] () {}     to[vsource]     ++(0,1.5);
-        \draw (1.5,0) node[ground] () {}     to[vsource]     ++(0,1.5);
+            % Vsources
+            \draw (0,0) node[ground] () {}     to[vsource]     ++(0,1.5);
+            \draw (1.5,0) node[ground] () {}     to[vsource]     ++(0,1.5);
 
-        % ---------------------------------------------------------------------------
-        %  Boxes
-        % ---------------------------------------------------------------------------
-        \node [rectangle, draw, dashed, fit=(ADC) (uC) (Mux)](MCU) {};
-        \node [below, align=center] at (MCU.south) {MCU (nRF5340)} ;
+            % ---------------------------------------------------------------------------
+            %  Boxes
+            % ---------------------------------------------------------------------------
+            \node [rectangle, draw, dashed, fit=(ADC) (uC) (Mux)](MCU) {};
+            \node [below, align=center] at (MCU.south) {MCU (nRF5340)} ;
 
-        % ---------------------------------------------------------------------------
-        % Draw wires
-        % ---------------------------------------------------------------------------
-        \draw (ADC.right) -- (uC.left);
-        \draw (Mux.rpin 1) -- (ADC.left);
+            % ---------------------------------------------------------------------------
+            % Draw wires
+            % ---------------------------------------------------------------------------
+            \draw (ADC.right) -- (uC.left);
+            \draw (Mux.rpin 1) -- (ADC.left);
 
-        \draw (0, 1.5) -- (0, 1.5 |- Mux.blpin 1) -- (Mux.blpin 1);
-        \draw (1.5, 1.5) -- (1.5, 1.5 |- Mux.blpin 2) -- (Mux.blpin 2);
+            \draw (0, 1.5) -- (0, 1.5 |- Mux.blpin 1) -- (Mux.blpin 1);
+            \draw (1.5, 1.5) -- (1.5, 1.5 |- Mux.blpin 2) -- (Mux.blpin 2);
 
-        \draw (Mux.blpin 3) to[short, -o]    ++(-1,0);
-        \draw (Mux.blpin 4) to[short, -o]    ++(-1,0);
-        \draw (Mux.blpin 5) to[short, -o]    ++(-1,0);
-        \draw (Mux.blpin 6) to[short, -o]    ++(-1,0);
-        \draw (Mux.blpin 7) to[short, -o]    ++(-1,0);
-        \draw (Mux.blpin 8) to[short, -o]    ++(-1,0);
-        
-    \end{circuitikz}}
-    
-    \caption{Schematic used for testing response of the ADC core of the MCU}
-    \label{fig:ADC_test}
+            \draw (Mux.blpin 3) to[short, -o]    ++(-1,0);
+            \draw (Mux.blpin 4) to[short, -o]    ++(-1,0);
+            \draw (Mux.blpin 5) to[short, -o]    ++(-1,0);
+            \draw (Mux.blpin 6) to[short, -o]    ++(-1,0);
+            \draw (Mux.blpin 7) to[short, -o]    ++(-1,0);
+            \draw (Mux.blpin 8) to[short, -o]    ++(-1,0);
+
+        \end{circuitikz}}
+
+    \caption{Schematic used for testing response of the ADC core of the MCU}\label{fig:ADC_test}
 \end{figure}

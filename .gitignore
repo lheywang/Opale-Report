@@ -6,6 +6,12 @@
 *.out
 *.fdb_latexmk
 *.fls
+*.bbl
+*.bcf
+*.lot
+*.xml
+*.gz
+*.auxlock
 
 # Output files (Added by after)
 *.pdf

@@ -1,0 +1,35 @@
+\section{Analog conception}
+For the first part, let's discover the analog stuff we've done on the board.
+The analog is quite absent on this board, and we only use it for two purposes :
+\begin{itemize}
+    \item   Get the position feedback of the servos
+    \item   Monitor voltages on power rails
+\end{itemize}
+
+For the first part, we're measuring a DC voltage that move between $~0.6 \si{\volt}$
+and $~2.4 \si{\volt}$. And, they're moving slowly, it take near one second to get
+from one limit to the other ! For the second part, we're measuring a static DC voltage,
+just to ensure the battery is present and in it's operating range.
+
+Since the voltages are already in our measurement range, and even more, in the area
+where the integrated ADC is quite linear, we don't have a lot of signal conditioning
+to do.
+
+We've only designed a filter to remove any high frequency signals that may be picked
+by the wires used. Thus, we designed a Sallen-Key active filter, with a 100 Hz cutoff
+frequency. This filter is absent from the power supply rail measurements, since they
+are located on the PCB, and we can ensure the signal integrity with a proper layout.
+
+The circuit is the following one :
+\input{\Schematics/servo-filter.tex}
+
+Using a SPICE simulator, we got this response :
+\begin{figure}[!hbt]
+    \centering
+    \includegraphics[width=\SchematicWidth]{\Images/Schematic/filter.eps}
+    \caption{Bode plot of the filter response}
+\end{figure}
+\FloatBarrier
+
+The response match our needs, which are quite simple : Remove the potential harmfull noise,
+and fast variations that could occur.

@@ -1,5 +1,5 @@
 % Documents settings
-\documentclass[twoside]{report}
+\documentclass[twoside, openany]{report}
 
 % Loading configs
 \input{config/commands.tex}
@@ -16,6 +16,12 @@
 % Document
 \begin{document}
 
+% Setting font size
+\fontsize{9}{10.5}\selectfont\blindtext
+
+% Number pages in roman for the introduction (i, ii, iii)
+\pagenumbering{roman}
+
 \input{\Config/title.tex}
 \input{\Config/header.tex}
 
@@ -24,32 +30,44 @@
 \listoftables
 
 \newpage
-\chapter{Introduction}
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
 \input{introduction.tex}
-\chapter{System block diagram}
+\chapter*{System block diagram}
+\addcontentsline{toc}{chapter}{System block diagram}
 \input{BlockDiagram.tex}
+\newpage
+
+% Set page number in plain numbers (1, 2, 3...)
+\pagenumbering{arabic}
 
 \chapter{Component selection}
 \input{\Src/components/components.tex}
 
 \chapter{Caracterisation and measures of actuators}
-\include{\Src/carac/carac.tex}
+\input{\Src/carac/carac.tex}
 
 \chapter{Mechanical design}
-\include{\Src/mechanical/mechanical.tex}
+\input{\Src/mechanical/mechanical.tex}
 
 \chapter{Electronic design}
-\include{\Src/electronic/electronic.tex}
+\input{\Src/electronic/electronic.tex}
 
 \chapter{Controller}
-\include{\Src/control/control.tex}
+\input{\Src/control/control.tex}
 
 \chapter{Programmation}
-\include{\Src/prog/prog.tex}
+\input{\Src/prog/prog.tex}
 
-\chapter{Conclusion}
+% Set page number in uppercase roman (I, II, III)
+\chapter*{Conclusion}
+\pagenumbering{Roman}
+
+\addcontentsline{toc}{chapter}{Conclusion}
 \input{conclusion.tex}
 
+\chapter*{Bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
 \printbibliography
 
 \newpage

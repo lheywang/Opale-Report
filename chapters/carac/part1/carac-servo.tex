@@ -1,5 +1,5 @@
 First, we need to measure precisely how the engines respond to any arbitrary input, to design they're own control loop.
-To measure the servo response, we proceeded in two times : A first session, with some electronic specialized tool, 
+To measure the servo response, we proceeded in two times : A first session, with some electronic specialized tool,
 and a second session with the MCU as controller and measuring unit !
 
 \paragraph{}
@@ -7,7 +7,7 @@ We used this schematic for the measures :
 \input{data/circuitikz/servo-test}
 
 \paragraph{}
-For the first session, we sent the control signal using a dedicated signal generator, configured 
+For the first session, we sent the control signal using a dedicated signal generator, configured
 to output a PWM at a frequency of $50 \si{\hertz}$ and with a pulse length between $1 \si{ms}$ and
 $2 \si{ms}$.
 We measured the output of the servo engines, which is an analog output that reflect the servo position
@@ -35,19 +35,19 @@ This gave us results that where ok, but clearly perfectibles :
 \FloatBarrier
 
 \paragraph{}
-Now, we have a command and a response that seem plausible, except one details : The servo seems to start 
+Now, we have a command and a response that seem plausible, except one details : The servo seems to start
 \textit{before} the command. That's typically the case for a non-causal systems, which can't be easily controlled,
 if at all !
 Luckily, in our case this is an issue from the code that draw theses graphes, rathers than the servo by itself.
 We used a script that convert the raw measures to theses ones, but there was a bug, which cause this lag \footnote{
     To be precise, the DutyCycle function return a list of n elements, where n is the number of period. We then
-    extended this list to match the original lenght. And since the DutyCycle return the value at the end of the 
-    period, there is $Te$ retard. Thus, a $\frac{1}{Te}$ period is now $\frac{n}{Te}$. 
+    extended this list to match the original lenght. And since the DutyCycle return the value at the end of the
+    period, there is $Te$ retard. Thus, a $\frac{1}{Te}$ period is now $\frac{n}{Te}$.
     Combine both, and you end up with a visually non-causal system.
 }.
 
 \paragraph{}
-Anyway, theses measures weren't that good, they gave a first order approximation but didn't represented 
+Anyway, theses measures weren't that good, they gave a first order approximation but didn't represented
 correctly the signal. This was caused by multiple points :
 
 \begin{itemize}
@@ -81,7 +81,6 @@ Theses are way better than we got on the first session, because we addresses the
 Using the zoom functions, we can identify that in our case, the servos engines are responsing
 as a very simple device : A first order one.
 
-They goes into the required position in about $1 Te$, which is on our system arround 
+They goes into the required position in about $1 Te$, which is on our system arround
 $120 \si{\milli\second}$ by achieving a linear transition.
-
 

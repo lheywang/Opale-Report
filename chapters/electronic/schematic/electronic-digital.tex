@@ -1,0 +1,19 @@
+\section{Digital part}
+For the last part, the digital one, we didn't needed a lot of reflexion. Most of
+the design was already done on development kits, for example on the nRF5340DK
+\cite{nRF5340DK}. Even for sensors, there is mostly the default
+application example that need to be copied, and slightly adapted to our needs.
+
+For example, the modifications we done :
+\begin{itemize}
+    \item   Change configuration bootstrap to select one mode of the other.
+    \item   Configure power supplies needed.
+    \item   Configure I2C addresses.
+\end{itemize}
+
+\subsection{Pin attribution}
+When a sensor need to be connected on the MCU, we attribute some pins. Since near
+all of them are digitals, and then be swapped by software. Thus, we'll be using a
+pin swapping functionnality in Altium to perform theses operations for us.
+
+Thus, the pin attribution on the MCU is quite arbitrary since it will change by after.

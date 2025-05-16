@@ -1,28 +1,27 @@
 \begin{figure}[!hbt]
     \centering
     \resizebox{\SchematicWidth}{!}{%
-    \begin{circuitikz}
-        % ---------------------------------------------------------------------------
-        % Draw components
-        % ---------------------------------------------------------------------------
-        \draw (0,0) node[ground] {} to[vsourcesquare, label=\(V_{\text{PWM}}\)] (0,2) node[] () {};
-        \draw (4,2) node[elmech](motor){M};
-        \draw (4,0) node[ground] {};
-        \draw (4,4) node[vcc] {\(V_{\text{CC}} = 5 \si{\volt}\)};
-        \draw (8,2) node[oscopeshape] (osc1) {};
-        \draw (2,1) node[oscopeshape] (osc2) {};
+        \begin{circuitikz}
+            % ---------------------------------------------------------------------------
+            % Draw components
+            % ---------------------------------------------------------------------------
+            \draw (0,0) node[ground] {} to[vsourcesquare, label=\(V_{\text{PWM}}\)] (0,2) node[] () {};
+            \draw (4,2) node[elmech](motor){M};
+            \draw (4,0) node[ground] {};
+            \draw (4,4) node[vcc] {\(V_{\text{CC}} = 5 \si{\volt}\)};
+            \draw (8,2) node[oscopeshape] (osc1) {};
+            \draw (2,1) node[oscopeshape] (osc2) {};
 
-        % ---------------------------------------------------------------------------
-        % Draw wires
-        % ---------------------------------------------------------------------------
-        \draw (0,2) -- (motor.left);
-        \draw (4,0) -- (motor.bottom);
-        \draw (4,4) -- (motor.top);
-        \draw (motor.right) -- (osc1.left);
-        \draw (osc2.left) -- ++(-0.5, 0) -- ++(0,1) node[circ] {};
-        
-    \end{circuitikz}}
-    
-    \caption{Schematic used for testing response of servo engines}
-    \label{fig:Servo_test}
+            % ---------------------------------------------------------------------------
+            % Draw wires
+            % ---------------------------------------------------------------------------
+            \draw (0,2) -- (motor.left);
+            \draw (4,0) -- (motor.bottom);
+            \draw (4,4) -- (motor.top);
+            \draw (motor.right) -- (osc1.left);
+            \draw (osc2.left) -- ++(-0.5, 0) -- ++(0,1) node[circ] {};
+
+        \end{circuitikz}}
+
+    \caption{Schematic used for testing response of servo engines}\label{fig:Servo_test}
 \end{figure}

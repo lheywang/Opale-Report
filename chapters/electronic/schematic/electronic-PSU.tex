@@ -1,0 +1,40 @@
+\section{Power supplies}
+Now, let's look a bit deeper on the power supplies, and how they're agenced.
+\subsection{Power tree}
+To represent the whole power supply organization, we drew a power tree, a schematic that
+represent the power supplies.
+
+\input{\Schematics/power-tree.tex}
+
+On this schematic, there two main regulators, that are, in fact buck switching regulators.
+But, there's three power sources :
+\begin{itemize}
+    \item   Vbus : The 5V that came from the USBC port when the board is plugged on a PC.
+    \item   Vbatt : A battery that is charged to power up the MCU and all of the logic
+          circuits.
+    \item   Vbatt\_pyro : A battery that is charged to power up the servo engines and
+          the thruster starter.
+\end{itemize}.
+
+As we can see in \ref{fig:power_tree}, we can configure the power supply as we need.
+From the three sources, we're able to use a single one by tying both supply together.
+And, we can even then supply the whole system with a single USB supply, but at a reduced
+voltage. At the opposite, if needed, we can bypass the 5V buck system if we want to
+power the servos and the engines with an higher voltage.
+
+Selection is mainly done by jumper, which are big zero ohm resistors.
+
+\subsection{DCDC buck design}
+To design theses circuits, we used a reliable tool that may be found online, from
+Texas Instruments : \cite{POWERDESIGNER}. We pass them the input conditions, such as
+voltage, and the output wanted : voltage and current. The tool output then circuits
+than can match the needs, and we need to select one, based on some settings :
+
+\begin{itemize}
+    \item   Space on board
+    \item   Cost
+    \item   switching frequency
+\end{itemize}
+
+Since we didn't require specific criterion on theses aspects, we choose the one that
+was the easiest to solder. Then, we import the designed module into the schematic.
