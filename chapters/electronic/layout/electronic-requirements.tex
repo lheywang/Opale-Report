@@ -45,13 +45,13 @@ This gave us a board shape like that :
 \begin{figure}
     \centering
     \includegraphics[width=\SmallSchematicWidth]{\Images/PCB/shape.eps}
-    \caption{Board outlines}
-    \label{img:board_shape}
+    \caption{Board outlines}\label{img:board_shape}
 \end{figure}
+\FloatBarrier
 
 In green, and with right angles, there the exported shape from the mechanical conception.
 We defined a bit smaller board shape than that, to ensure that the manufacturing tolerances
-wont cause any issues, and to add some margin for some wires and so. This final board shape
+wont cause any issues, and to add some margin. This final board shape \ref{img:board_shape}
 is not clearly visible on the image, as it's drawn in grey and on a thin line.
 
 There's a lot of mechanical support, by both screws and cuts to ensure the board can't be
@@ -68,7 +68,9 @@ ensure the wire won't need to cross the board !
 But there a lot of others elements with a defined position, theses includes :
 
 \begin{itemize}
-    \item   Antennas and related ICs / passives
-    \item   Position of the accelerometers and IMU
-    \item   Position of the screws.
+    \item   Antennas and related ICs / passives (need to be closest to the source, with excellent
+          grounding)
+    \item   Position of the accelerometers and IMU (Shall be placed near to the center of the board
+          to prevent from rotationals events)
+    \item   Position of the screws (Defined by the support)
 \end{itemize}

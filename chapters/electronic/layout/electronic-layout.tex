@@ -11,7 +11,7 @@ Now, we can start the layout process, in this order :
 Our board is quite big for the components we needed to place. Thus, there is some empty spaces,
 which is not a bad thing.
 
-This also mean that the placement of passives (which are, for most in the package size 0603)
+This also mean that the placement of passives (which are, for most in the package size 0603) was
 easier, since circuits are physically distants from others.
 
 For each circuits, we always start with the decoupling capacitors, that need to be carrefully
@@ -29,11 +29,11 @@ For the next step, we configured the "pin swapping" function on the schematic, t
 to be swapped. This is possible due to the architecture of most recent microcontrollers, where all
 of the functions goes trough a pin matrix to assign to a pin, regardless of the peripheral. This
 gave us freedom on the crossing that can be deleted with it \footnote{
-    This pin swapping method caused us some harm, because of an undoumented limitations : A
+    This pin swapping method caused us some problems, because of an undocumented limitations : A
     peripheral can't use, at the same time multiples pins from different ports. This required
     us to re-route some part of the PCB.
 }.
-We created thus four groups of pins :
+We created four groups of pins :
 \begin{itemize}
     \item   A digital group on the port where the function is pinned to the port 0.
     \item   Another digital group, for the port 1.
@@ -42,7 +42,7 @@ We created thus four groups of pins :
 \end{itemize}
 
 Then, the ECAD tool enable us to automatically perform pin swapping to globally optimize the pins.
-Then, when routing, we can perform some precisions pin swaps if it make the layout easier.
+Then, when routing, we can perform some precision pin swaps if it make the layout easier.
 
 \subsection{Layout}
 When routing the connections, we've always got in mind the signal integrity issues than can come
@@ -51,7 +51,8 @@ Thus, we make sure that any fast signal \footnote{
     In fast, near every signal on the board can be qualified as fast, due to their rising and falling
     edges. Nonetheless, for signals that enable or disable functions once in the flight, we assumed
     that their behavior when switching aren't going to perturb the overall execution.
-} is routed on top layers, or, by default with a ground plane near it.
+} is routed on top layers, or, by default with a ground plane near it to act as a return path for the
+currents and a reference.
 
 For every signals, if they need to "cross" a signal, on another layer, we ensured the crossing to be
 at a 90 degrees to reduce the crosstalk between them. In the same manner, we ensured that tracks that
@@ -111,5 +112,14 @@ is the mix of both.
 Once the layout was finished, we did some more steps to make the PCB cleaner :
 
 \begin{itemize}
-    \item
+    \item   Spacing tracks that can be spaced
+    \item   Placing the silkscreen designators and logos on the PC\footnote{
+              We ensured that designators were placed in two precise directions :
+              Facing bottom of the board, or facing right side. This ensure some
+              consistency in the overall design.
+          }
+    \item   Adding silkscreen notes to identify important pads.
 \end{itemize}
+
+Naturally, we runned a DRC (Design rules check) to ensure the PCB was correct, before
+exporting it to the manufacturer.
