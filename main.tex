@@ -1,5 +1,5 @@
 % Documents settings
-\documentclass[twoside, openany]{report}
+\documentclass[twoside]{report}
 
 % Loading configs
 \input{config/commands.tex}
@@ -17,7 +17,7 @@
 \begin{document}
 
 % Setting font size
-\fontsize{9}{10.5}\selectfont\blindtext
+\fontsize{9}{10.5}
 
 % Number pages in roman for the introduction (i, ii, iii)
 \pagenumbering{roman}
@@ -47,8 +47,8 @@
 \chapter{Caracterisation and measures of actuators}
 \input{\Src/carac/carac.tex}
 
-\chapter{Mechanical design}
-\input{\Src/mechanical/mechanical.tex}
+% \chapter{Mechanical design}
+% \input{\Src/mechanical/mechanical.tex}
 
 \chapter{Electronic design}
 \input{\Src/electronic/electronic.tex}
@@ -66,11 +66,20 @@
 \addcontentsline{toc}{chapter}{Conclusion}
 \input{conclusion.tex}
 
-\chapter*{Bibliography}
 \addcontentsline{toc}{chapter}{Bibliography}
 \printbibliography
 
 \newpage
+
+% Set page number in Alph (A, B, C ...) for annexes
+\pagenumbering{Alph}
 \appendix
+
+\input{\Src/components/components-annexes.tex}
+\input{\Src/carac/carac-annexes.tex}
+\input{\Src/mechanical/mechanical-annexes.tex}
+\input{\Src/electronic/electronic-annexes.tex}
+\input{\Src/control/control-annexes.tex}
+\input{\Src/prog/prog-annexes.tex}
 
 \end{document}
