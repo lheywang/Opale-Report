@@ -1,4 +1,6 @@
-\section{Configuration using devicetrees}
+\section[Configuration using devicetrees]{Configuration using devicetrees\footnote{
+      A more detailled explanation of the device trees is available at the end of the report : \ref{sec:dt_intro}
+  }}
 Since we're using a microcontroller that is widely available, most of the work with
 devicetrees has already been done by the manufacturer.
 
@@ -33,7 +35,7 @@ For any overlay file, we used four main blocks\footnote{
     The number of block may vary depending on each architecture and software decision.
 }, which are
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item Global peripheral configuration
     \item Pin configuration
     \item Advanced peripheral configuration
@@ -65,7 +67,7 @@ Now, the main configuration part. That's where we configure most of the behavior
 \paragraph{}
 Before entering into the main details, we need to explain something : We created a node named "wings" here,
 that is compatible with pwm-wings. This is a custom wrote specification for our needs that wait for
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item A pwm array with exactly four pwm channels
     \item A pwm period
     \item Some boundaries about the duty cycle (expressed in time domain)
