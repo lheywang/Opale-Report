@@ -1,0 +1,32 @@
+\begin{figure}[!hbt]
+    \centering
+    \resizebox{\SchematicWidth}{!}{%
+        \begin{circuitikz}
+            \tikzstyle{every node}=[font=\normalsize]
+            \draw [ fill={rgb,255:red,158; green,148; blue,213} ] (1.25,8.5) rectangle  node {\normalsize Measurement task} (7.5,3.5);
+            \draw [ fill={rgb,255:red,236; green,195; blue,195} ] (11.25,14.75) rectangle  node {\normalsize Safety task} (17.5,12.25);
+            \draw [ fill={rgb,255:red,236; green,195; blue,195} ] (11.25,7.25) rectangle  node {\normalsize Controller task} (17.5,4.75);
+            \draw [ fill={rgb,255:red,236; green,195; blue,195} ] (11.25,-0.25) rectangle  node {\normalsize Logger task} (17.5,-2.75);
+            \draw [->, >=Stealth] (7.5,6) -- (11.25,6);
+            \draw [->, >=Stealth] (10,-1.5) -- (11.25,-1.5);
+            \draw [->, >=Stealth] (10,13.5) -- (11.25,13.5);
+            \draw [short] (10,-1.5) -- (10,4.75);
+            \draw [short] (7.5,4.75) -- (10,4.75);
+            \draw [short] (10,13.5) -- (10,7.25);
+            \draw [short] (7.5,7.25) -- (10,7.25);
+            \draw [ fill={rgb,255:red,162; green,199; blue,179} ] (20,-0.25) rectangle  node {\normalsize SPI EEPROM} (26.25,-2.75);
+            \draw [ fill={rgb,255:red,162; green,199; blue,179} ] (20,11) rectangle  node {\normalsize Wings control} (26.25,8.5);
+            \draw [ fill={rgb,255:red,162; green,199; blue,179} ] (20,14.75) rectangle  node {\normalsize Status LED} (26.25,12.25);
+            \draw [ fill={rgb,255:red,162; green,199; blue,179} ] (20,7.25) rectangle  node {\normalsize Wings control} (26.25,4.75);
+            \draw [->, >=Stealth] (17.5,6) -- (20,6);
+            \draw [->, >=Stealth] (17.5,13.5) -- (20,13.5);
+            \draw [->, >=Stealth] (17.5,-1.5) -- (20,-1.5);
+            \draw [->, >=Stealth] (18.75,9.25) -- (20,9.25);
+            \draw [->, >=Stealth] (18.75,10.25) -- (20,10.25);
+            \draw [short] (18.75,9.25) -- (18.75,6)node[pos=0.5, fill=white]{Command};
+            \draw [short] (18.75,10.25) -- (18.75,13.5)node[pos=0.5, fill=white]{Enable};
+        \end{circuitikz}
+    }%
+    \caption{Task organizations}\label{tkz:tasks}
+\end{figure}
+\FloatBarrier
