@@ -11,7 +11,7 @@ We used this schematic for this measurement session :
 
 We sent different voltages waveforms on the ADC core, including :
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item Precise DC voltages
     \item Voltages ramps
 \end{itemize}
@@ -27,13 +27,23 @@ And then, we recorded over a long time (~ 20 mn) the values, and plotted them on
 
 \begin{figure}[!hbt]
     \centering
-    \includegraphics[width=\SchematicWidth]{\Images/ADC/time-deviation.eps}
-    \caption{ADC drift over time}
+    \begin{minipage}[c]{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{\Images/ADC/time-deviation.eps}
+        \caption{ADC drift over time}\label{img:adc_drift}
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[c]{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{\Images/ADC/ADC-DNL.eps}
+        \caption{ADC drift over time}\label{img:adc_dnl}
+    \end{minipage}%
 \end{figure}
 \FloatBarrier
 
-Here, we can clearly see that the ADC does not seems to deviate at all, so that's a good point ! We
-know that it's transfer function can be expressed as $N = f(V)$ and does not depend on the time.
+Here, we can clearly see that the ADC does not seems to deviate at all (\ref{img:adc_drift}), so that's
+a good point ! We know that it's transfer function can be expressed as $N = f(V)$ and does not depend
+on the time or other external factors.
 
 \FloatBarrier
 \subsection{Non linearity}
@@ -44,14 +54,8 @@ To measure that, the voltage sources were configured as ramp input, and we recor
 a long time (~45 mn) to cover a large number of periods of the input ramp, which was slow to let time
 to the ADC to convert.
 
-\begin{figure}[!hbt]
-    \centering
-    \includegraphics[width=\SchematicWidth]{\Images/ADC/ADC-DNL.eps}
-    \caption{ADC drift over time}
-\end{figure}
-\FloatBarrier
-
 \paragraph{}
+The results are visible in (\ref{img:adc_dnl}).
 The result here is typical from integrated ADC. Theses graphics represent the number of times there was this
 voltage at it's inputs during the test.
 A perfect ADC shall return the exact same number for all voltages (Since a ramp is by definition linear).
@@ -65,7 +69,6 @@ This should not cause any issues here, because our return signal is included bet
 and $2.4 \si{\volt}$, which by chance is in the correct range. Otherwise, it would require some amplification
 or offset to get the needed precision.
 
-
 \FloatBarrier
 \subsection{Gain error}
 The last point that is required here is the gain error. Since the internal components of the ADC include
@@ -75,14 +78,21 @@ To measure that, we send precises voltages to the inputs, and log the output vol
 Then, with a simple division we can estimate the gain error.
 
 This gave us theses plots :
-\begin{figure}
+
+\begin{figure}[!hbt]
     \centering
-    \subfloat[\centering Raw measures]{{\includegraphics[width=\SmallSchematicWidth]{\Images/ADC/gain-error.eps} }}%
-    \qquad
-    \subfloat[\centering Corrected measures]{{\includegraphics[width=\SmallSchematicWidth]{\Images/ADC/gain-compensated.eps} }}%
-    \caption{Uncorrected and corrected gain errors}%
+    \begin{minipage}[c]{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{\Images/ADC/gain-error.eps}
+        \caption{Raw measures}\label{img:adc_error}
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[c]{0.48\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{\Images/ADC/gain-compensated.eps}
+        \caption{Corrected measures}\label{img:adc_corrected}
+    \end{minipage}%
+    \caption{Uncorrected and corrected gain errors}\label{img:adc_gainerr}
 \end{figure}
 \FloatBarrier
-
-
 

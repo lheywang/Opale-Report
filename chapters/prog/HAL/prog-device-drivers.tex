@@ -21,7 +21,7 @@ For example, the driver for the IMU was entirely wrote by Bosch, which require u
 write only the communication functions !
 
 This look like :
-\inputminted[linenos, firstline=19471, lastline=19515]{cpp}{\Code/drivers/bno055/bno055.cpp}
+\inputminted[linenos, firstline=19471, lastline=19484]{cpp}{\Code/drivers/bno055/bno055.cpp}
 
 And, that's done for the driver !
 
@@ -32,11 +32,11 @@ An lot of work was needed to ensure this driver is correctly working.
 In the previous code section, the manufacturer provided a write and read functions to be
 called. It only required us to fill them.
 
-\inputminted[linenos, firstline=292, lastline=330]{cpp}{\Code/drivers/teseo/teseo.cpp}
+\inputminted[linenos, firstline=311, lastline=315]{cpp}{\Code/drivers/teseo/teseo.cpp}
 
 Hopefully, manufacturer provided us some functions to check if a command was well
 formed, to match the checksum, as well as some parsers to identify the different
-elements.
+elements. The IO operations remains handled by us.
 
 This save us a lot of time compared to writting the full driver.
 
@@ -51,15 +51,12 @@ smaller chips, which make the develop quite straightforward.
 For example, the only driver we needed to develop like that was for the temperature
 sensor.
 
-\inputminted[linenos, firstline=119, lastline=158]{cpp}{\Code/drivers/ms5611/MS5611.cpp}
-
 This driver include all of the calculations needed for temperature corrections
 needed to match the precision. Theses are indeed affected by temperature,
 or just measure range. The sensor isn't linear at all over the plage, but per
 segments.
 
 Here, all of the code was hand written because nothing, except documentation was provided.
-
 
 \subsection{Final words}
 To conclude this part on drivers, we can resume them as a fundamental brick of the software,

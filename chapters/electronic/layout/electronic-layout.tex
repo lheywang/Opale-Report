@@ -1,7 +1,7 @@
 \section{PCB Layout}
 Now, we can start the layout process, in this order :
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item   Place the remaining components on the board
     \item   Route sensibles tracks.
     \item   Route the remaining tracks
@@ -34,7 +34,7 @@ gave us freedom on the crossing that can be deleted with it \footnote{
     us to re-route some part of the PCB.
 }.
 We created four groups of pins :
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item   A digital group on the port where the function is pinned to the port 0.
     \item   Another digital group, for the port 1.
     \item   An analog input group.
@@ -111,7 +111,7 @@ is the mix of both.
 
 Once the layout was finished, we did some more steps to make the PCB cleaner :
 
-\begin{itemize}
+\begin{itemize}[noitemsep]
     \item   Spacing tracks that can be spaced
     \item   Placing the silkscreen designators and logos on the PC\footnote{
               We ensured that designators were placed in two precise directions :
@@ -123,3 +123,6 @@ Once the layout was finished, we did some more steps to make the PCB cleaner :
 
 Naturally, we runned a DRC (Design rules check) to ensure the PCB was correct, before
 exporting it to the manufacturer.
+
+To go a bit further, the whole assembly process is available in the annexes of the
+report : \ref{sec:assembly} and \ref{sec:defaults}
