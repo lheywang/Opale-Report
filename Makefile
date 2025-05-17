@@ -3,7 +3,6 @@ pdf:
 	@mkdir -p build/images/
 	@mkdir -p build/chapters
 	@latexmk -shell-escape -pdf main.tex
-	@\cp build/main.pdf .
 
 compress: pdf
 	@gs \
@@ -17,6 +16,8 @@ compress: pdf
 		-dCompressFonts=true \
 		-sOutputFile=build/main_compressed.pdf \
 		build/main.pdf
+
+	@\cp build/main_compressed.pdf .
 
 clean:
 	@latexmk -C
