@@ -1,0 +1,50 @@
+\begin{figure}
+    \centering
+    \resizebox{\SchematicWidth}{!}{%
+    \begin{tikzpicture}
+        % adding grid
+        \draw [->, line width=0.5pt] (0,-0.5) -- (0,10) node [left] {Z};
+        \draw [->, line width=0.5pt] (-0.5,0) -- (10,0) node [below] {X};
+
+        % Adding arrows
+        % Horizontals
+        \draw[->, line width=2pt] (5.8,0) -- (4,0) node[midway, below]{\(-R\cos{\theta}\)};
+        \draw[->, line width=2pt] (6.2,0) -- (8,0) node[midway,below] {\(Pcos{\theta}\)};
+        % Vertical
+        \draw[->, line width=2pt] (0,5.8) -- (0,4) node[left] {\(-R\sin{\theta}\)};
+        \draw[->, line width=2pt] (0,5.8) -- (0,4.4) node[left] {\(-M_g\)};
+        \draw[->, line width=2pt] (0,6.2) -- (0,8) node[left] {\(P\sin{\theta}\)};
+
+        % small lines that make the graphe readable
+        % Horizontal lines
+        \draw [dotted, line width=0.5pt] (0.5,4) -- (4,4);
+        \draw [dotted, line width=0.5pt] (0.5,6) -- (6,6);
+        \draw [dotted, line width=0.5pt] (0.5,4.4) -- (6, 4.4);
+        \draw [dotted, line width=0.5pt] (0.5,8) -- (8,8);
+        % Vertical lines
+        \draw [dotted, line width=0.5pt] (4,0.5) -- (4,4);
+        \draw [dotted, line width=0.5pt] (5.6,0.5) -- (5.6,5.6);
+        \draw [dotted, line width=0.5pt] (6,0.5) -- (6,6);
+        \draw [dotted, line width=0.5pt] (8,0.5) -- (8,8);
+
+        % Adding the rocket
+        \path [draw=black, fill=yellow, line width=0.1mm]
+            (4.625,3.875) -- ++(0.6,0.6) -- ++(0,0.5) -- ++(1.1,1.1) --
+            ++ (0.5,0.75) -- ++(-0.75,-0.5) -- ++(-1.1,-1.1) --
+            ++ (-0.5,0) -- ++(-0.6,-0.6) -- ++(0.5,0) -- ++(0.25,-0.25)
+            -- ++(0,-0.5);
+
+        % Adding forces vector
+        \draw [->, line width=1pt] (5.6,5.6) node [above left] {CP}-- (4,4) node [below left] {\(\overrightarrow{R}\)};
+        \draw [->, line width=1pt] (6,6) -- (8,8) node [above] {\(\overrightarrow{P}\)};
+        \draw [->, line width=1pt] (6,6) node [below right] {CG} -- (6,4.4) node [right] {\(\overrightarrow{M_g}\)};
+
+        % Adding angle mark
+        \draw (1,1) coordinate(B) -- (2,1) coordinate(A);
+        \draw (1,1) -- (2,2) coordinate(C);
+        \pic [draw, ->, "$\theta$", angle eccentricity=1.5] {angle = A--B--C};
+        
+    \end{tikzpicture}
+    }
+    \caption{Forces applied to the rocket}\label{img:rocket_forces}
+\end{figure}
