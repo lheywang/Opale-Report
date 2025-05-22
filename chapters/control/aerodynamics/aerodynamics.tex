@@ -28,36 +28,36 @@ just above. For each aileron we can determine their impact on the total torque
 generated with :
 
 \begin{align*}
-    F_L  & = \frac{1}{2} \rho V^2 S C_L (\partial)                      \\
-    \tau & = r * F_L                                                    \\
-         & = r ( \frac{1}{2} \rho V^2 S C_{L \partial} \times \partial) \\
+    F_L  & = \frac{1}{2} \rho V^2 S C_L (\delta)                    \\
+    \tau & = r * F_L                                                \\
+         & = r ( \frac{1}{2} \rho V^2 S C_{L \delta} \times \delta) \\
 \end{align*}
 
 We can say that :
 
 \begin{gather*}
-    K_\tau = \frac{1}{2} \rho V^2 S C_{L \partial} r
+    K_\tau = \frac{1}{2} \rho V^2 S C_{L \delta} r
 \end{gather*}
 
 And thus:
 
 \begin{gather*}
-    \tau = K_\tau \times \partial
+    \tau = K_\tau \times \delta
 \end{gather*}
 
-With $V$ the velocity, $S$ the surface $C_{L \partial}$ the derivative of the
+With $V$ the velocity, $S$ the surface $C_{L \delta}$ the derivative of the
 lift coefficient, $F_L$ the lift force, $\tau$ the torque, $K_\tau$ the control
-effectiveness coefficient, $\partial$ the AoA and r the moment arm which is the
+effectiveness coefficient, $\delta$ the AoA and r the moment arm which is the
 distance between the $CP$ and the $CM$ of the rocket.
 
 To integrate those equations into the simulation we only must determine the
 angles of our ailerons over time and input it in the previous equations :
 
 \begin{gather*}
-    \tau_i = \frac{1}{2} \rho V^2 S C_{L \partial} r \times \partial_i
+    \tau_i = \frac{1}{2} \rho V^2 S C_{L \delta} r \times \delta_i
 \end{gather*}
 
-Our $\partial_i$ will be computed through the output of our simulated PID which
+Our $\delta_i$ will be computed through the output of our simulated PID which
 we will see just below this.
 
 With this we can now create our own simulation. We just need to add a few
@@ -78,17 +78,17 @@ controller as it is the controller I am most comfortable with and the one I
 understand the most. We create in fact 3 different PID for each axis:
 
 \begin{gather*}
-    \partial_{CMD}(t) = K_p e(t) + K_p e(t) + K_i \int e(t) dt
+    \delta_{CMD}(t) = K_p e(t) + K_p e(t) + K_i \int e(t) dt
 \end{gather*}
 
 After combining each PID we have :
 
 \begin{gather*}
-    \overrightarrow{\partial} = M_{control} *
+    \overrightarrow{\delta} = M_{control} *
     \begin{bmatrix}
-        \partial_P \\
-        \partial_Y \\
-        \partial_R 3
+        \delta_P \\
+        \delta_Y \\
+        \delta_R 3
     \end{bmatrix}
 \end{gather*}
 
