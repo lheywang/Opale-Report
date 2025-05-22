@@ -82,4 +82,14 @@
 \input{\Src/control/control-annexes.tex}
 \input{\Src/prog/prog-annexes.tex}
 
+% Including schematic (multiple include otherwise sizing issues occurs).
+\includepdf[scale=0.85, pages=1, pagecommand=\chapter{Board schematic}]{\Pdf/export.pdf}
+\includepdf[scale=0.85, pages={2,3}, nup=1x2, pagecommand={}]{\Pdf/export.pdf}
+\includepdf[scale=0.85, pages={5,8}, nup=1x2, pagecommand={}]{\Pdf/export.pdf}
+\includepdf[scale=0.85, pages={4,6,7,9,10}, nup=1x2, pagecommand={}]{\Pdf/export.pdf}
+
+% Including board assembly
+\includepdf[scale=0.85, pages=11, pagecommand=\chapter{Assembly descriptions}]{\Pdf/export.pdf}
+\includepdf[scale=0.85, pages=12-17, nup=1x2, pagecommand={}]{\Pdf/export.pdf}
+
 \end{document}
