@@ -1,13 +1,13 @@
 \section{Analog conception}
-For the first part, let's discover the analog stuff we've done on the board.
+Now, let's jump into the analog design we've done : 
 The analog is quite absent on this board, and we only use it for two purposes :
 
 \begin{itemize}[noitemsep]
-    \item   Get the position feedback of the servos
-    \item   Monitor voltages on power rails
+    \item   Get the position feedback of the servos.
+    \item   Monitor voltages on power rails. 
 \end{itemize}
 
-For the first part, we're measuring a DC voltage that move between $~0.6 \si{\volt}$
+For this part, we're measuring a DC voltage that move between $~0.6 \si{\volt}$
 and $~2.4 \si{\volt}$. And, they're moving slowly, it take near one second to get
 from one limit to the other ! For the second part, we're measuring a static DC voltage,
 just to ensure the battery is present and in it's operating range.
@@ -33,4 +33,13 @@ Using a SPICE simulator, we got this response :
 \FloatBarrier
 
 The response match our needs, which are quite simple : Remove the potential harmfull noise,
-and fast variations that could occur.
+and fast variations that could occur. 
+
+The real circuit on the schematic is based on this one, but with optionnal configurations
+jumpers to enable to tune the circuit on board.
+
+This include : 
+\begin{itemize}[noitemsep]
+    \item   An optionnal voltage divider at the input, to not go above the rail of the OpAmp.
+    \item   Optionnals jumpers to bypass the frontend directly to the ADC.
+\end{itemize}
