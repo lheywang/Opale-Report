@@ -1,10 +1,19 @@
 \section{Digital part}
-For the last part, the digital one, we didn't needed a lot of reflexion. Most of
-the design was already done on development kits, for example on the nRF5340DK
-\cite{nRF5340DK}. Even for sensors, there is mostly the default
-application example that need to be copied, and slightly adapted to our needs.
+For this second part, the digital one we're going to look at the microcontroller mostly,
+but also some parts of the whole digital subsystems. For this part, we mostly got inspired
+by development kits, such as \cite{nRF5340DK}. Theses provide a great example on how to 
+implement some IC on custom PCBs. 
 
-For example, the modifications we done :
+Arround the MCU, we added some peripherals IC to fulfill our needs, for examples :
+\begin{itemize}[noitemsep]
+    \item An 16 Mb EEPROM, to store flight measurements.
+    \item An RGB LED, to indicate status to the user.
+\end{itemize}
+
+To ensure the systems are working we sometimes need to modify some elements from the examples.
+Theses changes are always documented in the datsheets of the components.
+
+Here some examples of things we changed :
 \begin{itemize}[noitemsep]
     \item   Change configuration bootstrap to select one mode of the other.
     \item   Configure power supplies needed.
@@ -12,8 +21,22 @@ For example, the modifications we done :
 \end{itemize}
 
 \subsection{Pin attribution}
-When a sensor need to be connected on the MCU, we attribute some pins. Since near
-all of them are digitals, and then be swapped by software. Thus, we'll be using a
-pin swapping functionnality in Altium to perform theses operations for us.
+For the last digital element, we're going understand how the pins were choosed on the MCU, and why.
 
-Thus, the pin attribution on the MCU is quite arbitrary since it will change by after.
+First, we need to read the datasheets, and it's clearly explained that any peripheral can be routed to 
+any pins.
+Nonetheless, there's some pins that can designed for a specific function. For example, there is two pins
+designed for high drain current, where the opposite direction (pull up) is standard. Theses pins are 
+designed to handle high speed I2C ! So if we want to use fast I2C, it's clearly recommended to use them.
+
+The remaining pins were placed arbitrary, because we'll changed that later ! \ref{sec:pin_swap}.
+
+\subsection{Discrete logic}\label{subsec:dis_logic}
+On the board, most of the logic is done in software by the MCU. But there's two hardware functions, related
+to security features.
+
+Theses are lathing the state of the pin with a DLATCH on the boot of the board, and an AND gate between the 
+command of the engines and input of the drivers.
+
+This enable us to block the start of engines in hardware rather than by software only. Thus, if the board 
+is configured as debug mode, it won't be able to start engines, regardless of the software loaded.

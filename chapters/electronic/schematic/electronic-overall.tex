@@ -1,0 +1,18 @@
+\section{Schematic presentation}
+Since the project can be quite complex, we've done a schematic based on hierarchical sheets.
+This enable us to sort the different parts of the schematic, and even duplicate some of them easily !
+
+This is done in Altium by placing subsheets and linking them through ports and power nets.
+
+\subsection{First page}
+On the first page, we found the top of the schematic, and it look like a functionnal diagram !
+We have placed blocks for the microcontroller, the sensors, and others IO.
+
+There also power input with they're associated protections :
+
+\begin{itemize}[noitemsep]
+    \item   2A slow-blow fuse, to prevent any overload of the batteries and short-circuits.
+    \item   Reverse protection diode. Prevent damages if the supply is wired backward.
+\end{itemize}
+
+The whole schematic is available in annexes of this document as reference.
