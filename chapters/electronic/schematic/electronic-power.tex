@@ -1,49 +1,55 @@
 \section{Power section}
-Now, let's look into the power section of the board. This is this section responsible to
-power up the heaviest devices, which can't be powered from a GPIO.
+Now, let's look into the power section of the board. This is this section
+responsible to power up the heaviest devices, which can't be powered from a
+GPIO.
 
 There's few devices on the board that require specific circuits to be driven :
 
 \begin{itemize}[noitemsep]
-    \item   The servos engines (wings and parachute).
+    \item   The servomotors (ailerons and parachute).
     \item   The buzzer.
-    \item   The engines starters.
+    \item   The engine starters.
 \end{itemize}
 
-Each of theses elements go it's solution since they're requirements aren't the same.
+Each of these elements go it's solution since they're requirements aren't the
+same.
 
-\subsection{Servo engines}
-Theses devices are already an integrated solution, we don't directly drive the engine.
-So, they're power requirements are quite easy to fulfill : We feed them with 5V, stable 
-voltage. 
+\subsection{Servomotors}
+These devices are already an integrated solution, we don't directly drive the
+servo. So, their power requirements are quite easy to fulfill : We feed them
+with 5V, stable voltage.
 
-We only used bulk capacitors near they're connectors to ensure, even if a current peak 
-occurs to handle it locally.
+We only used bulk capacitors near their connectors to ensure that a current
+peak is handled it locally.
 
 \subsection{Buzzer}
-This second device is a different beast, since we drive it directly. This time, we placed 
-it directly on the supply, with an NMOS on the low side, to switch on or off the current 
-on it, and thus make sound, or not.
+This second device is a different beast, since we drive it directly. This time,
+we placed it directly on the supply, with an NMOS on the low side, to switch on
+or off the current on it, and thus make sound, or not.
 
-So, we needed an NMOS transistor to be choosen that can handle some current, but more 
-importantly : An NMOS that was compatible with our voltage level available on the output 
-of GPIOS\footnote{
-    The mosfet we choosed was working, the can be optimized : We didn't make sure that is 
-    was fully switched at our GPIO voltage level, and thats effectively the case : It fully 
-    switch at arround 6V. Thus, the current is limited, which is fine for logic usages but
-    not power ones.
-}.
+So, we needed an NMOS transistor to be choosen that can handle some current,
+but more importantly : An NMOS that was compatible with our voltage level
+available on the output of GPIOs\footnote{ The mosfet we choosed was working,
+    the can be optimized : We didn't make sure that is was fully switched at our
+    GPIO voltage level, and thats effectively the case : It fully switch at arround
+    6V. Thus, the current is limited, which is fine for logic usages but not power
+    ones. }.
 
-\subsection{Engines starters}
-For theses last one, that's where the requirements are the strongest : We need a lot of
-current, arround 2A per engines to start, at a quite high voltage (8-9V). Thus, we needed
-a solution.
+\subsection{Engine starters}
+For these last one, this is where our requirements are the highest : We need a
+lot of current, around 2A per engine to start, at a quite high voltage (8-9V).
 
-Here we used ULN2803C drivers IC, made to handle a lot of current with difficults loads 
-(inductives, high voltage...). Theses are Darlington BJT transistors pairs, with each 
-channel done for 500mA. By using four channels in parallel, we got our current requirements.
+The power supply for this section is different than the remaining of the board,
+for a simple reason : When the engine start, the supply is near the short
+circuit. It's voltage will then drop, and it may place others components in
+UVLO (UnderVoltage LockOut), where the device stop working.
 
-But, theses IC They draw arround $ 1 \si{\milli\ampere}$ per input ! Here, that wasn't 
-an issue since theses inputs are controlled by an AND gate \ref{subsec:dis_logic}. This 
-gate is able to provide more than enough current, while preserving a low input current, 
-perfect for an MCU or any GPIO.
+Here we used ULN2803C drivers IC, made to handle a lot of current with
+difficults loads (inductives, high voltage...). These are Darlington BJT
+transistors pairs, with each channel done for 500mA. By using four channels in
+parallel, we got our current requirements.
+
+But, these IC require arround $ 1 \si{\milli\ampere}$ per input ! Here, that
+wasn't an issue since these inputs are controlled by an AND gate
+\ref{subsec:dis_logic}. This gate is able to provide more than enough current,
+while preserving a low input current, perfect for an MCU or any GPIO.

@@ -3,19 +3,19 @@
 We will now talk about the equations and the control theory behind Opale to be
 able to simulate it later and to better comprehend what physical phenomenon
 will impact the flight of our rocket to be more precise in the conception of
-the body. One thing to be noted is that we will use Euler’s equation to
+the body. One thing to be noted is that we will use Euler's equation to
 comprehend those
 
 \subsection{Simplified Dynamics of the Rocket with 3 DoF}
+
+\input{\Graphes/forces.tex}
+\FloatBarrier
 
 This rocket can be modeled as a rigid body with 3 degrees of freedom (DoF), but
 the control can be focused primarily on pitch and yaw. To follow everything
 below we will now see about a 3D case of our rocket this part has been heavily
 inspired by the document “Le vol de la Fusée, Stabilité et Trajectographie” by
-the CNES:
-
-\input{\Graphes/forces.tex}
-\FloatBarrier
+the CNES \ref{img:rocket_forces}.
 
 If we look a bit into the forces on the rocket in flight we can get the figure
 just above and we can take out those 2D equations rather easily:
@@ -33,29 +33,29 @@ Now that we have our basic equations, we can determine our equations based on
 time and in 3D :
 
 \begin{align*}
-    t_i  & = t_{i-1} + dt \text{: Compute the actual time}                                                                        \\
-    m_i  & = m_{i-1} - dm \text{: compute the mass of the roceket as the motor burns fuel}                                        \\
-    P_i  & = \text{mean thrust between $t_i$ and $t_{i-1}$}                                                                       \\
-    Fr_i & = (P_i - \frac{1}{2}\rho(Z_{i-1}SCx(V_{i-1})V^2_{i-1}) \cos({\text{pitch}_{i-1}})) \text{: Horizontales sum of forces} \\
-    Fz_i & = (P_i - \frac{1}{2}\rho(Z_{i-1}SCx(V_{i-1})V^2_{i-1}) \sin({\text{pitch}_{i-1}})) \text{: Vertical sum of forces}     \\
-    Gr_i & = \frac{Fr_i}{m_i} \text{: Horizontale acceleration}                                                                   \\
-    Gz_i & = \frac{Fz_i}{m_i} \text{: Vertical acceleration}                                                                      \\
-    Vr_i & = Vr_{i-1} + Gr_i dt \text{: Horizontale velocity}                                                                     \\
-    Vz_i & = Vz_{i-1} + Gz_i dt \text{: Vertical velocity}                                                                        \\
-    V_i  & = \sqrt{Vr_i^2 + Vz_i^2} \text{: Total velocity}                                                                       \\
-    X_i  & = X_{i-1} + (Vr_i dt + Gr_i \frac{dt^2}{2}) \cos({yaw})\text{: X position}                                             \\
-    Y_i  & = Y_{i-1} + (Vr_i dt + Gr_i \frac{dt^2}{2}) \sin({yaw}) \text{: Y position}                                            \\
-    Z_i  & = Z_{i-1} + Vzi dt + Gz_i \frac{dt^2}{2} \text{: Z position}                                                           \\
+    t_i  & = t_{i-1} + dt \text{: Compute the actual time}                                                                      \\
+    m_i  & = m_{i-1} - dm \text{: compute the mass of the roceket as the motor burns fuel}                                      \\
+    P_i  & = \text{mean thrust between $t_i$ and $t_{i-1}$}                                                                     \\
+    Fr_i & = (P_i - \frac{1}{2}\rho(Z_{i-1}SCx(V_{i-1})V^2_{i-1}) \cos({\text{pitch}_{i-1}})) \text{: Horizontal sum of forces} \\
+    Fz_i & = (P_i - \frac{1}{2}\rho(Z_{i-1}SCx(V_{i-1})V^2_{i-1}) \sin({\text{pitch}_{i-1}})) \text{: Vertical sum of forces}   \\
+    Gr_i & = \frac{Fr_i}{m_i} \text{: Horizontal acceleration}                                                                  \\
+    Gz_i & = \frac{Fz_i}{m_i} \text{: Vertical acceleration}                                                                    \\
+    Vr_i & = Vr_{i-1} + Gr_i dt \text{: Horizontal velocity}                                                                    \\
+    Vz_i & = Vz_{i-1} + Gz_i dt \text{: Vertical velocity}                                                                      \\
+    V_i  & = \sqrt{Vr_i^2 + Vz_i^2} \text{: Total velocity}                                                                     \\
+    X_i  & = X_{i-1} + (Vr_i dt + Gr_i \frac{dt^2}{2}) \cos({yaw})\text{: X position}                                           \\
+    Y_i  & = Y_{i-1} + (Vr_i dt + Gr_i \frac{dt^2}{2}) \sin({yaw}) \text{: Y position}                                          \\
+    Z_i  & = Z_{i-1} + Vzi dt + Gz_i \frac{dt^2}{2} \text{: Z position}                                                         \\
 \end{align*}
 
 And, if the rocket is stil on the launch ramp :
 
 \begin{align*}
-    Fr_i & = Fr_i - m_i g cos({pitch_{i-1}}) sin({pitch_{i-1}}) \\
-    Fz_i & = Fz_i - m_i g cos({pitch_{i-1}}) cos({pitch_{i-1}}) \\
+    Fr_i & = Fr_i - m_i \times g \times cos({pitch_{i-1}}) \times sin({pitch_{i-1}}) \\
+    Fz_i & = Fz_i - m_i \times g \times cos({pitch_{i-1}}) \times cos({pitch_{i-1}}) \\
 \end{align*}
 
 Those equations can be exported into simulation software like Simulink
-following this flow chart
+following this flow chart :
 
 \input{\Graphes/simulation_algo.tex}

@@ -1,19 +1,21 @@
-First, we need to measure precisely how the engines respond to any arbitrary input, to design they're own control loop.
-To measure the servo response, we proceeded in two times : A first session, with some electronic specialized tool,
-and a second session with the MCU as controller and measuring unit !
+First, we need to measure precisely how the engines respond to any arbitrary
+input, to design they're own control loop. To measure the servo response, we
+proceeded in two times : A first session, with some electronic specialized
+tool, and a second session with the MCU as controller and measuring unit !
 
 \paragraph{}
-We used this schematic for the measures :
-\input{data/circuitikz/servo-test}
+We used this schematic for the measures : \input{data/circuitikz/servo-test}
 
 \paragraph{}
-For the first session, we sent the control signal using a dedicated signal generator, configured
-to output a PWM at a frequency of $50 \si{\hertz}$ and with a pulse length between $1 \si{ms}$ and
-$2 \si{ms}$.
-We measured the output of the servo engines, which is an analog output that reflect the servo position
-using an oscilloscope, and a bit after using directly the ADC of the MCU.
+For this measures, we sent to the servo a PWM signal at a frequency of $50
+    \si{\hertz}$ and with a pulse length between $1 \si{ms}$ and $2 \si{ms}$. For
+the first session, this PWM was generated with a signal generator, and for the
+second, using an MCU.
 
-We got theses measures :
+The measure was done using both an oscilloscope and the ADC of the MCU.
+
+We got these measures\footnote{ This came from the second session only. The
+    measures for the first sessions didn't gave us proper results. } :
 
 \begin{figure}[!hbt]
     \centering
@@ -32,11 +34,9 @@ We got theses measures :
 \FloatBarrier
 
 \paragraph{}
-Theses are way better than we got on the first session, because we addresses the issues.
+Using the zoom functions, we can identify that in our case, the servos engines
+are responsing as a very simple device : A first order one.
 
-Using the zoom functions, we can identify that in our case, the servos engines are responsing
-as a very simple device : A first order one.
-
-They goes into the required position in about $1 Te$, which is on our system arround
-$120 \si{\milli\second}$ by achieving a linear transition.
+They goes into the required position in about $1 Te$, which is on our system
+arround $70 \si{\milli\second}$ by achieving a linear transition.
 
