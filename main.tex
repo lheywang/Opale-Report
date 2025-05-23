@@ -64,20 +64,19 @@
 \chapter{Programmation}\label{chap:prog}
 \input{\Src/prog/prog.tex}
 
-% Set page number in uppercase roman (I, II, III)
 \chapter*{Conclusion}
-\pagenumbering{Roman}
-
 \addcontentsline{toc}{chapter}{Conclusion}
 \input{conclusion.tex}
+
+% Set page number in Alph (A, B, C ...) for annexes
+\newpage
+\pagenumbering{Alph}
 
 \addcontentsline{toc}{chapter}{Bibliography}
 \printbibliography
 
 \newpage
 
-% Set page number in Alph (A, B, C ...) for annexes
-\pagenumbering{Alph}
 \appendix
 
 \input{\Src/components/components-annexes.tex}
