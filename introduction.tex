@@ -14,7 +14,7 @@ but the mechanical part will also quicly be explained.
 The goal with the control electronics is to ensure the rocket will follow a defined trajectory, as
 well as storing into an EEPROM some measurements for an after fly interpretation.
 
-The rocket can be modelled as a complex system, composed with multiples blocks :
+The rocket can be modeled as a complex system, composed with multiple blocks :
 
 \begin{itemize}[noitemsep]
     \item   Sensors (positionning, temperature...)
@@ -24,25 +24,25 @@ The rocket can be modelled as a complex system, composed with multiples blocks :
 \end{itemize}
 
 \paragraph{}
-This report will be splitted in multiples parts, that are not ordered in a chronological order, but
+This report will be splitted in multiple parts, that are not ordered in a chronological order, but
 more in a logic way.
 
 \paragraph{}
 In the first chapter, we're going to explain how we choosed main hardware elements, such as the controller,
 the servo engines or the inertial measurement unit. Theses are device where a wide range of choices are possible !
 
-In a second part, we'll focus on the caracterisation of some elements, to understand precisely how they respond to
+In a second part, we'll focus on the caracterisation of sensors and actuators, to understand precisely how they behave to
 any input signals. This is an important step if we want to develop a precise controller for them !
 
 For a third chapter, we're going to detail the whole procedure of the electronic design. This start from the schematic,
 and end up with a whole printed circuit board, ready to be manufactured.
 
-For the next part, we'll see how we designed the controller of the rocket, the algorithm that compute the command to apply
-to the wings to ensure a proper trajectory.
+For the next part, we'll see how we designed the controller of the rocket, from the physical equations to a simulation,
+and then implemented into an embedded controller.
 
 And, to finish the main section, a final part will be dedicated for the whole software we wrote, that handle the control as
 well as some other task on the rocket.
 
 After the conclusion, in annexes there will be some more details. This include a mechanical overview of the rocket, as well as
-the process of soldering the board or some precisions about the software we developped.
+the process of soldering the board or some precisions about the software and controller we developped.
 
