@@ -33,6 +33,11 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 \input{introduction.tex}
+
+\chapter*{Specifications}
+\addcontentsline{toc}{chapter}{Specifications}
+\input{requirements.tex}
+
 \chapter*{System block diagram}
 \addcontentsline{toc}{chapter}{System block diagram}
 \input{BlockDiagram.tex}
@@ -41,22 +46,22 @@
 % Set page number in plain numbers (1, 2, 3...)
 \pagenumbering{arabic}
 
-\chapter{Component selection}
+\chapter{Component selection}\label{chap:components}
 \input{\Src/components/components.tex}
 
-\chapter{Caracterisation and measures of actuators}
+\chapter{Caracterisation and measures of actuators}\label{chap:carac}
 \input{\Src/carac/carac.tex}
 
 % \chapter{Mechanical design}
 % \input{\Src/mechanical/mechanical.tex}
 
-\chapter{Electronic design}
+\chapter{Electronic design}\label{chap:electronic}
 \input{\Src/electronic/electronic.tex}
 
-\chapter{Controller}
+\chapter{Controller}\label{chap:controller}
 \input{\Src/control/control.tex}
 
-\chapter{Programmation}
+\chapter{Programmation}\label{chap:prog}
 \input{\Src/prog/prog.tex}
 
 % Set page number in uppercase roman (I, II, III)
