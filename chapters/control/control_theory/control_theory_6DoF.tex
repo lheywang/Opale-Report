@@ -1,5 +1,4 @@
 \subsection{The rotational equation to make our model with 6DoF}
-
 We now have our equations to compute the position and its derivatives over
 time. The thing is those equations are only for a rigid body with only 3 DoF
 and without any ailerons added to them. To be able to have our 6 DoF and to be
@@ -17,7 +16,7 @@ For a rigid body\footnote{rigid body is symmetrical and the axes are aligned
     \end{cases}
 \end{gather*}
 
-with $r$ the net torque, $I_\omega$ the angulor momentum, $I$ the inertia
+With $r$ the net torque, $I_\omega$ the angulor momentum, $I$ the inertia
 tensor and $\omega$ is the angular velocity.
 
 We can assume that the rocket is symmetrical so $I_x=I_y$ and we could
@@ -52,3 +51,45 @@ Because we use Euler's equations, we encounter a problem known as the gimbal
 lock. This happens as two rotation axes become aligned. Because we are in a 3D
 space instead of a 4D space like for quaternions, we can't differentiate
 between those two axes and so we lose a DoF as long as those axes are merged.
+
+We now need to talk about a problem to determine our moments of inertia for our rocket.
+These moments are governed by those equations:
+
+\begin{align*}
+    I_x = I_y & = \frac{1}{12} \times m(r^3 + L^2)I_z \\
+              & = \frac{1}{2} \times mr^2             \\
+\end{align*}
+with $m$ the weight, $r$ the radius and $L$ the length.
+Our weight goes from around 1690g to 1350g so a loss of about 20\% the total initial
+weight which isn't negligeable. To simplify our equation with a linear interpolation
+to these equations which are much simpler to implement into our simulation:
+
+\begin{align*}
+    I_x(t) = I_y(t) & = I_{x, dry} + \frac{1}{12}m_{\text{fuel}}(t) \times L^2_{\text{motor}} + m_{\text{fuel}}(t)dt^2 \times I_z(t) \\
+                    & = I_{z, dry} + \frac{1}{8} \times m_{\text{fuel}}(t) \times D^2                                                \\
+\end{align*}
+
+With $m$ fuel the remaining fuel at the instant t, $D$ the diameter of the rocket and $L$
+motor the length of the motor. Now that we have our rotational d Iynamic, we can calculate
+Euler Angle Kinematics which is used to convert our angular velocities in our body frame
+referential to Euler angle rates. To do this we use this transformation:
+
+\begin{gather*}
+    \begin{bmatrix}
+        \dot{\Omega} \\
+        \dot{\Theta} \\
+        \dot{\Psi}   \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 & \sin{\Phi} \times \tan{\Theta}  & \cos{\Phi} \times \tan{\Theta}  \\
+        0 & \cos{\Phi}                      & -\sin{\Phi}                     \\
+        0 & \frac{\sin{\Phi}}{\cos{\Theta}} & \frac{\cos{\Phi}}{\cos{\Theta}} \\
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+        \omega_x \\
+        \omega_y \\
+        \omega_z \\
+    \end{bmatrix}
+\end{gather*}

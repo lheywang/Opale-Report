@@ -25,7 +25,7 @@ the embedded code as well as in the simulation.
 \begin{figure}[!hbt]
     \centering
     \includegraphics[width=\SchematicWidth]{\Images/mechanical/AirfloilStall.eps}
-    \caption{Mechanical schematic of the rocket}
+    \caption{Mechanical schematic of the rocket. Source : \cite{FlowSeparation}}
 \end{figure}
 \FloatBarrier
 
@@ -114,6 +114,13 @@ on a specific axis for example what we have as a control matrix is :
         -1 & -1 & +1 \\
         -1 & +1 & -1 \\
     \end{bmatrix}
+    \times
+    \begin{bmatrix}
+        \text{Aileron 1} \\
+        \text{Aileron 2} \\
+        \text{Aileron 3} \\
+        \text{Aileron 4} \\
+    \end{bmatrix}
 \end{gather*}
 
 This matrix controls which ailerons move in which direction.
@@ -121,6 +128,8 @@ This matrix controls which ailerons move in which direction.
 \begin{figure}[!hbt]
     \centering
     \includegraphics[width=\SchematicWidth]{\Images/mechanical/AileronsPosition.eps}
-    \caption{Simulink model we used}
+    \caption{Position of the ailerons.}
 \end{figure}
 \FloatBarrier
+
+The aileron numbering start on top right one, and then rotate counter-clockwise.
