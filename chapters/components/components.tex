@@ -1,10 +1,11 @@
-When starting the project, one of the first points was to choose components. But,
-why this one ? And not the other ? Let's dig into the hardware choices we made here !
+When starting the project, one of the first points was to choose components.
+But, why this one ? And not the other ? Let's dig into the hardware choices we
+made here !
 
 \section{Servo engines}
-The first component we need to choose were the servo engines. Theses are responsible
-of the position of the wings outside of the rocket.
-Our criterions were :
+The first component we need to choose were the servo engines. These are
+responsible of the position of the wings outside of the rocket. Our criterions
+were :
 \begin{itemize}
     \item   Minimal error on the control position, ideally with a position feedback.
     \item   Fast enough response.
@@ -16,32 +17,55 @@ We considered the servos listed on the \ref{tab:servo_list} table.
 
 \input{\Tables/list_servo.tex}
 
-Our selection end up on the KPower servo engine, because of their availabily on well known
-retailers and specs that are enough for our needs.
+Our selection end up on the KPower servo engine, because of their availabily on
+well known retailers and specs that are enough for our needs.
 
 \section{MCUs}
-The second component that required a bit selection was the MCU, the microcontroller that
-will control everything. We didn't needed a ton of computing power, but we needed some
-advanced peripherals, and eventually an 2.4 GHz radio interface for a remote Bluetooth
-control.
+The second component that required a bit selection was the MCU, the
+microcontroller that will control everything. We didn't needed a ton of
+computing power, but we needed some advanced peripherals, and eventually an 2.4
+GHz radio interface for a remote Bluetooth control.
 
-We considered theses MCUs, listed on the \ref{tab:mcu_list} table
+We considered these MCUs, listed on the \ref{tab:mcu_list} table
 
 \input{\Tables/list_mcu.tex}
 
-Our choice end up on the nRF5340 IC, because it has enough computing power for our need
-(and it has two cores !) and some advanced peripherals interconnects (such as PPI, which
-enable us to connect peripherals between them to create logic conditions !).
-But there where another fact : It has an excellent software support and documentation,
-which are going to help us a lot. That was mainly this point that make us select this chip,
-compared to the other options which where less documented.
+Our choice end up on the nRF5340 IC, because it has enough computing power for
+our need (and it has two cores !) and some advanced peripherals interconnects
+(such as PPI, which enable us to connect peripherals between them to create
+logic conditions !). But there where another fact : It has an excellent
+software support and documentation, which are going to help us a lot. That was
+mainly this point that make us select this chip, compared to the other options
+which where less documented.
 
 \section{Sensors selection}
-The sensors are also an important part of the rocket, because they're the entry of informations.
-They thus need to be precise enough, but, more importantly, do not derive excessively.
+The sensors are also an important part of the rocket, because they're the entry
+of informations. They thus need to be precise enough, but, more importantly, do
+not derive excessively.
 
-And, since theses sensors are mostly accelerometers, the cost for theses can easily become
-important. Thus, we didn't get a lot of choice, and we really got a single option ! The BNO055.
+And, since these sensors are mostly accelerometers, the cost for these can
+easily become important. For this selection, we did had a choice between two
+options :
 
-We assisted it with a pair of simpler accelerometers, mainly for testing purposes rather and
-precision.
+\subsection{A Pair of accelerometers}
+A single accelerometer isn't an expensive device, so it's perfectly possible to
+use two or more of them on a single board.
+
+And, with some software treatement we can get the position, speed and rotations
+of the rocket with only two of them, by derivating the acceleration.
+
+But, this first solution has a major flaw : It will drift over time, leading to
+imprecise calculations, and thus : An error. However, this solution may be
+viable for slowest devices.
+
+\subsection{An integrated IMU}
+To counter this aspect, we selected a more complex device, that integrate
+multiple sensors into one. It enable the device to compensate the drift of a
+device with another, but there is a cost : This require a complex software.
+
+Hopefully, this software is already integrated into the chip, leaving us with
+already treated data.
+
+That's why we choosed the BNO055, an IMU rather than a pair of accelerometers.
+Nonetheless, we deciced to implement both options on the board, to let us some
+freedom about or solutions, and to tests different possibilites.

@@ -1,5 +1,41 @@
-Let's talk about the controller design :
+\paragraph{}
+Now that we've seen the main physical part of our rocket as the PCB and the
+physics in the chapter\ref{chap:electronic}. Let's go back to our
+specifications. Our rocket needs to support up to 16g of acceleration, we need
+to acquire the flight data and finally we need our rocket to be stabilized by 4
+ailerons. We'll now talk about this last part. For a more efficient read about
+this I'll present you with the plan that we will follow:
 
-\input{\Src/control/part1/control-model.tex}
-\input{\Src/control/part2/control-design.tex}
-\input{\Src/control/part3/control-simu.tex}
+\begin{itemize}
+    \item The control theory behind controlling said ailerons and how to integrate those
+          equations into simulation software
+    \item The application and translation of those simulations to the software.
+\end{itemize}
+
+After those three axes we will finally conclude about the controller side of
+the rocket.
+To finish this introduction, you will see below a schematic of Opale. The
+ailerons that we will control are the forwardmost ones. There are not many
+reasons apart from the challenge to use such ailerons at the front of a micro
+test rocket as the inherent stability of a rocket would be enough for most
+rockets of this size. Those ailerons even reduce this stability by firstly
+reducing the ratio CG/CL (center of gravity per center of lift, see the
+mechanical appendix \ref{annex:mechanical} for more detail). The reason to add
+such ailerons for our project is to first and foremost add the challenge and
+complexity needed for this project to be worthy of being a TER and secondly in
+the future, we could change the software to follow some sort of waypoints in
+the air for the rocket to try and follow.
+
+\begin{figure}[!hbt]
+    \centering
+    \includegraphics[width=\SchematicWidth]{\Images/mechanical/RocketSchematics.eps}
+    \caption{Mechanical schematic of the rocket}
+\end{figure}
+\FloatBarrier
+
+% Control theory input
+\input{\Src/control/control_theory/control_theory.tex}
+\input{\Src/control/control_theory/control_theory_6DoF.tex}
+
+% Aerodynamics
+\input{\Src/control/aerodynamics/aerodynamics.tex}

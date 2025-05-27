@@ -1,0 +1,26 @@
+\section{Embedding our results in the software}
+
+Now that we've seen how to simulate our code and the global architecture, we
+will now see how we integrate this to command our control surfaces. The thing
+is that because we've built our simulation first, we just need to code in C
+the same way we did our simulation. So basically, we just input this code:
+
+\inputminted[linenos, firstline=1, lastline=29]{c}{\RawCode/code.c}
+
+Since we already have different gains, we can just input those into a PID
+and give the desired angle. Since we want the rocket to go upright and that
+the IMU is positioned in such a way that when the rocket is upright, we have
+a $0 \si{\degree}$ angle. We also need the rocket not rotating on itself, and
+we can tell the controller everyone of those by inputting in the $PID_X$,
+the $PID_Y$ and the $PID_Z$ a $0 \si{\degree}$ desired angle.
+
+\paragraph{}
+The controller also has other uses such as controlling the gate to start the
+motor. This part is linked to the security part of the software which only
+activate this part when everything is good to go and that the rocket has our
+permission to fire.
+Another use is parachute deployment. For this part, we need to detect that
+we have had a liftoff, that we are at the apogee, which we can check by
+checking the vertical acceleration, inversing and with the altitude starting
+to decrease. To protect ourselves against false positives we can just check
+if we are at least 10m above the starting altitude of the rocket.

@@ -1,52 +1,60 @@
 \section{Power supplies}
-The power supplies are a big part of nearly all PCB nowadays. Without power, we can't do 
-anything. Thus, we need to ensure a nice power supply to all of the components on the board.
+The power supplies are a big part of nearly all PCB nowadays. Without power, we
+can't do anything. Thus, we need to ensure a steady power supply to all of the
+components on the board.
 
 \subsection{Power tree}
-To represent the whole power supply organization, we drew a power tree, a schematic that
-represent the path of the electrical energy onto the circuit.
+To represent the whole power supply organization, we drew a power tree, a
+schematic that represent the path of the electrical energy onto the circuit.
 
 \input{\Schematics/power-tree.tex}
 
-On this schematic, there two main regulators, that are, in fact buck switching regulators.
-But, there's three power sources :
+On this schematic, there two main regulators, that are, in fact buck switching
+regulators. But, there's three power sources :
 \begin{itemize}[noitemsep]
     \item   Vbus : The 5V that came from the USBC port when the board is plugged on a PC.
     \item   Vbatt : A battery that is charged to power up the MCU and all of the logic
           circuits.
-    \item   Vbatt\_pyro : A battery that is charged to power up the servo engines and
-          the thruster starter.
+    \item   Vbatt\_pyro : A battery that is charged to power up the servo engines and the
+          thruster starter.
 \end{itemize}.
 
-As we can see in \ref{fig:power_tree}, we can configure the power supply as we need.
-From the three sources, we're able to use a single one by tying both supply together.
-And, we can even then supply the whole system with a single USB supply, but at a reduced
-voltage. At the opposite, if needed, we can bypass the 5V buck system if we want to
+As we can see in \ref{fig:power_tree}, we can configure the power supply as we
+need. From the three sources, we're able to use a single one by tying both
+supply together. And, we can even then supply the whole system with a single
+USB supply, but at a reduced voltage.
+
+On the other hand, if required, we can bypass the 5V buck system if we want to
 power the servos and the engines with an higher voltage.
 
 Selection is mainly done by jumper, which are big zero ohm resistors.
 
 \subsection{DCDC buck design}
-To design theses circuits, we used a reliable tool that may be found online, from
-Texas Instruments : \cite{POWERDESIGNER}. We pass them the input conditions, such as
-voltage, and the output wanted : voltage and current. The tool output then circuits
-than can match the needs, and we need to select one, based on some settings :
+To design these circuits, we used a reliable tool that may be found online,
+from Texas Instruments : \cite{POWERDESIGNER}. We pass them the input
+conditions, such as voltage, and the output wanted : voltage and current. The
+tool output then create a circuit than can match the needs, and we need to
+select one, based on some settings :
 
 \begin{itemize}[noitemsep]
     \item   Space on board
     \item   Cost
-    \item   switching frequency
+    \item   Switching frequency
 \end{itemize}
 
-Since we didn't require specific criterion on theses aspects, we choose the one that
-was the easiest to solder. Then, we import the designed module into the schematic.
+Since we didn't require specific criterion on these aspects, we choose the one
+that was the easiest to solder. Then, we import the designed module into the
+schematic.
 
 \subsection{Decoupling capacitors}
-On the whole schematic, we can see a bit number of capacitors (arround two hundreds !).
-They're decoupling capacitor, and there for each power pin of an IC, it's capacitor.
+On the whole schematic, we can see a large number of capacitors (arround two
+hundreds !). They're decoupling capacitor, and there for each power pin of an
+IC, it's capacitor.
 
-These absorb current spikes locally, to not create any EMC issues on the future PCB layout.
-They're values are quite small, arround $5.6 \si{\nano\farad}$ of the closest one, and we added some bigger
-capacitors, arround $100 \si{\nano\farad}$ a bit further.
+These absorb current spikes locally, to not create any EMC issues on the future
+PCB layout. They're values are quite small, arround $5.6 \si{\nano\farad}$ of
+the closest one, and we added some bigger capacitors, arround $100
+    \si{\nano\farad}$ a bit further.
 
-The bulk energy storage is done by way bigger capacitors, but for the whole boards. 
+The bulk energy storage is done by way bigger capacitors, but for the whole
+boards.

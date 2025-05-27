@@ -1,33 +1,41 @@
 \section{Architecture}
-For this final section on the software architecture, let's talk about the top of the pyramid.
-Now, we have a fully configured chip, devices drivers, and an RTOS ready to handle task.
+For this final section on the software architecture, let's talk about the top
+of the pyramid. Now, we have a fully configured chip, devices drivers, and an
+RTOS\cite{annex:RTOS} ready to handle task.
 
-We just need to create the differents elements to communicate, and connect them together.
+We just need to create the differents elements to communicate, and connect them
+together.
 
-Theses elements are :
-
-\begin{itemize}[noitemsep]
-    \item   A safety task, charged to ensure the authorisation to start.
-    \item   A measurement task, charged to acquire all of the sensor data on the rocket.
-    \item   A logger task, charged to log events and measure for a further usage.
-    \item   A controller task, charged to compute and apply the commands for the different actuators.
-\end{itemize}
-
-Each of theses task communicate which each other trough three ways :
+These elements are :
 
 \begin{itemize}[noitemsep]
-    \item   Some FIFO, from one task to the other. Used for data exchanges such as measurement data mostly.
-    \item   A global status register, where each bits has it's own meaning.
-    \item   A global messaging systems, where each thread can sen a global message to each others. Used to indicate errors codes.
+      \item   A safety task, charged to ensure the authorisation to start and monitor values
+            and behavior to detect faults.
+      \item   A measurement task, charged to acquire all of the sensor data on the rocket.
+      \item   A logger task, charged to log events and measure for a further usage.
+      \item   A controller task, charged to compute and apply the commands for the different
+            actuators.
 \end{itemize}
 
-Each of theses tasks has some input data, that came from the measurement task, and some outputs that are
-reserved peripherals or part of peripherals. The software is done to ensure a single task will access to the SPI peripheral.
+Each of these task communicate which each other through three ways :
+
+\begin{itemize}[noitemsep]
+      \item   Some FIFO, from one task to the other. Used for data exchanges such as
+            measurement data mostly.
+      \item   A global status register, where each bits has it's own meaning.
+      \item   A global messaging systems, where each thread can send a global message to each
+            others. Used to indicate error codes.
+\end{itemize}
+
+Each of these tasks has some input data, that came from the measurement task,
+and some outputs that are reserved peripherals or part of peripherals. The
+software is done to ensure a single task will access to the SPI peripheral.
 
 Graphically, this may look like :
 
 \input{\Drawings/tasks.tex}
 
-This architecture has been choose to ensure a sepration between tasks, and thus some security. If something went wrong on the logger
-task, the controller would not be affected, because they're independant.
+This architecture has been choose to ensure a sepration between tasks, and thus
+some security. If something went wrong on the logger task, the controller would
+not be affected, because they're independant.
 

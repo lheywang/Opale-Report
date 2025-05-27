@@ -1,19 +1,19 @@
 \begin{figure}[!ht]
     \centering
-    \resizebox{0.75\textwidth}{!}{%
+    \resizebox{0.5\textwidth}{!}{%
         \begin{circuitikz}
             \tikzstyle{every node}=[font=\large]
-            \draw [ fill={rgb,255:red,168; green,255; blue,168} ] (12.5,30.75) rectangle  node {\large $\text{Start of calculations :} M_0, V_0, Z_0, \theta_0$} (25,28.25);
-            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (12.5,25.75) rectangle  node {\large $\text{Calculate} M_i$} (25,23.25);
-            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (5,20.75) rectangle  node {\large $\text{Calculate} \gamma X_i (\text{Depends} n R_{i-1} and cos \theta_{i-1})$} (17.5,18.25);
-            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (20,20.75) rectangle  node {\large $\text{Calculate} \gamma Y_i (\text{Depends} n R_{i-1} and sin \theta_{i-1})$} (32.5,18.25);
-            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (5,15.75) rectangle  node {\large $\text{Calculate} V\gamma_i (\text{Depends on} Vx and \gamma_i)$} (17.5,13.25);
-            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (20,15.75) rectangle  node {\large $\text{Calculate} Vz_i (\text{Depends on} Vz_{i-1} and \gamma_i )$} (32.5,13.25);
-            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (5,10.75) rectangle  node {\large $\text{Calculate} the x_i (\text{Depends on} X_{i-1} and \gamma X_i)$} (17.5,8.25);
-            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (20,10.75) rectangle  node {\large $\text{Calculate} Z_i (\text{Depends on} Z_{i-1} and \gamma Z_i)$} (32.5,8.25);
-            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (12.5,5.75) rectangle  node {\large $\text{Calculate} V_i$} (25,3.25);
-            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (12.5,0.75) rectangle  node {\large $\text{Calculate} R_i$} (25,-1.75);
-            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (12.5,-4.25) rectangle  node {\large $\text{Calculate} \theta_i$} (25,-6.75);
+            \draw [ fill={rgb,255:red,168; green,255; blue,168} ] (12.5,30.75) rectangle  node {\large $\text{Start of calculations : } M_0, V_0, Z_0, \theta_0$} (25,28.25);
+            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (12.5,25.75) rectangle  node {\large $\text{Calculate } \space M_i$} (25,23.25);
+            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (5,20.75) rectangle  node {\large $\text{Calculate } \space \gamma X_i \space(\text{Depends on } \space R_{i-1} \space \text{ and } \space cos(\theta_{i-1}))$} (17.5,18.25);
+            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (20,20.75) rectangle  node {\large $\text{Calculate } \space \gamma Y_i \space(\text{Depends on } \space R_{i-1} \space \text{ and } \space sin(\theta_{i-1}))$} (32.5,18.25);
+            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (5,15.75) rectangle  node {\large $\text{Calculate } \space V\gamma_i \space(\text{Depends on } \space Vx \space \text{ and } \space \gamma_i)$} (17.5,13.25);
+            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (20,15.75) rectangle  node {\large $\text{Calculate } \space Vz_i \space(\text{Depends on } Vz_{i-1} \space \space \text{ and } \space \gamma_i )$} (32.5,13.25);
+            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (5,10.75) rectangle  node {\large $\text{Calculate } \space the x_i \space(\text{Depends on } \space  X_{i-1} \space \text{ and } \space \gamma X_i)$} (17.5,8.25);
+            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (20,10.75) rectangle  node {\large $\text{Calculate } \space Z_i \space(\text{Depends on } \space Z_{i-1} \space \text{ and } \space \gamma Z_i)$} (32.5,8.25);
+            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (12.5,5.75) rectangle  node {\large $\text{Calculate } \space V_i$} (25,3.25);
+            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (12.5,0.75) rectangle  node {\large $\text{Calculate } \space R_i$} (25,-1.75);
+            \draw [ fill={rgb,255:red,125; green,190; blue,255} ] (12.5,-4.25) rectangle  node {\large $\text{Calculate } \space \theta_i$} (25,-6.75);
             \draw [ fill={rgb,255:red,251; green,223; blue,249} ] (12.5,-9.25) rectangle  node {\large Does the rocket has landed ?} (25,-11.75);
             \draw [ fill={rgb,255:red,255; green,128; blue,128} ] (12.5,-14.25) rectangle  node {\large End of calculations} (25,-16.75);
             \draw [->, >=Stealth] (18.75,28.25) -- (18.75,25.75);
@@ -41,3 +41,4 @@
     \caption{Algorithm used to simulate the rocket trajectory.}
     \label{fig:my_label}
 \end{figure}
+\FloatBarrier

@@ -1,64 +1,66 @@
 \section{Device drivers}
-Next, let's ramp a bit higher in the software structure. Now that we have drivers for
-most simple peripherals, we'll need drivers for devices, to handle all of the specific
-protocols for us.
+Next, let's ramp a bit higher in the software structure. Now that we have
+drivers for most simple peripherals, we'll need drivers for devices, to handle
+all of the specific protocols for us.
 
-Thus, when we need to read a temperature, we don't want to write to a register, wait for
-some time, and then read. We want to call a function that return us the temperature.
+Thus, when we need to read a temperature, we don't want to write to a register,
+wait for some time, and then read. We want to call a function that return us
+the temperature.
 
-That's the exact job for a device-driver.
-It format requests, use the peripherals drivers to handle the IO, and then make some
-calculations to return us a precise value in any cases.
+That's the exact job for a device-driver. It format requests, use the
+peripherals drivers to handle the IO, and then make some calculations to return
+us a precise value in any case.
 
-These kind of drivers can be sourced from the manufacturer, but some need to be wrote by
-hand. Others need to be modified to be compatible with our software decisions. Some
-other only provide standard libraries for the drivers, and let the user develop they're
-own drivers.
+These kind of drivers can be sourced from the manufacturer, but some need to be
+wrote by hand. Others need to be modified to be compatible with our software
+decisions. Some other only provide standard libraries for the drivers, and let
+the user develop they're own drivers.
 
 \subsection{Manufacturer sourced drivers}
-In the first case, which is the preferred option, the work needed is generally small.
-For example, the driver for the IMU was entirely wrote by Bosch, which require us to
-write only the communication functions !
+In the first case, which is the preferred option, the work needed is generally
+small. For example, the driver for the IMU was entirely wrote by Bosch, which
+require us to write only the communication functions !
 
-This look like :
-\inputminted[linenos, firstline=19471, lastline=19484]{cpp}{\Code/drivers/bno055/bno055.cpp}
+This look like : \inputminted[linenos, firstline=19471,
+    lastline=19484]{cpp}{\Code/drivers/bno055/bno055.cpp}
 
 And, that's done for the driver !
 
 \subsection{Libraries based drivers}
-In this second case, the manufacturer only provided some standard libraries to be used.
-An lot of work was needed to ensure this driver is correctly working.
+In this second case, the manufacturer only provided some standard libraries to
+be used. A lot of work was needed to ensure this driver is correctly working.
 
-In the previous code section, the manufacturer provided a write and read functions to be
-called. It only required us to fill them.
+In the previous code section, the manufacturer provided a write and read
+functions to be called. It only required us to fill them.
 
 \inputminted[linenos, firstline=311, lastline=315]{cpp}{\Code/drivers/teseo/teseo.cpp}
 
-Hopefully, manufacturer provided us some functions to check if a command was well
-formed, to match the checksum, as well as some parsers to identify the different
-elements. The IO operations remains handled by us.
+Hopefully, manufacturer provided us some functions to check if a command was
+well formed, to match the checksum, as well as some parsers to identify the
+different elements. The IO operations remains handled by us.
 
 This save us a lot of time compared to writting the full driver.
 
-In this example of code, the manufacturer provided the GNSS\_PARSER\_CheckSanity functions
-and other return values codes.
+In this example of code, the manufacturer provided the
+GNSS\_PARSER\_CheckSanity functions and other return values codes.
 
 We only needed to implement the IO.
 
 \subsection{Hand written drivers}
-Even if theses drivers are quite complex to write, they're generally reserved to much
-smaller chips, which make the develop quite straightforward.
-For example, the only driver we needed to develop like that was for the temperature
-sensor.
+Even if these drivers are quite complex to write, they're generally reserved to
+much smaller chips, which make the develop quite straightforward. For example,
+the only driver we needed to develop like that was for the temperature sensor.
 
 This driver include all of the calculations needed for temperature corrections
-needed to match the precision. Theses are indeed affected by temperature,
-or just measure range. The sensor isn't linear at all over the plage, but per
+needed to match the precision. These are indeed affected by temperature, or
+just measure range. The sensor isn't linear at all over the plage, but per
 segments.
 
-Here, all of the code was hand written because nothing, except documentation was provided.
+Here, all of the code was hand written because nothing, except documentation
+was provided.
 
 \subsection{Final words}
-To conclude this part on drivers, we can resume them as a fundamental brick of the software,
-that handle all of the device specific requirements.
-This part part is generally where the errors are, because they're difficult to test entirely.
+To conclude this part on drivers, we can resume them as a fundamental brick of
+the software, that handle all of the device specific requirements. This part
+part is generally where the errors are, because they're difficult to test
+entirely.

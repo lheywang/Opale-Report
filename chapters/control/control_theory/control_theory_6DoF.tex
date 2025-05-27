@@ -1,0 +1,95 @@
+\subsection{The rotational equation to make our model with 6DoF}
+We now have our equations to compute the position and its derivatives over
+time. The thing is those equations are only for a rigid body with only 3 DoF
+and without any ailerons added to them. To be able to have our 6 DoF and to be
+able to input our ailerons into this simulation we need to refer to Euler's
+equation of rotational dynamics as well as the standard aerodynamic lift
+equations:
+
+For a rigid body\footnote{rigid body is symmetrical and the axes are aligned
+    with the frame} with a diagonal inertia tensor:
+\begin{gather*}
+    \begin{cases}
+        r_x = I_x \dot{\omega}_x - (I_y - I_z)\omega_y \omega_z \\
+        r_y = I_y \dot{\omega}_y - (I_z - I_x)\omega_z \omega_x \\
+        r_z = I_z \dot{\omega}_z - (I_x - I_y)\omega_x \omega_y
+    \end{cases}
+\end{gather*}
+
+With $r$ the net torque, $I_\omega$ the angulor momentum, $I$ the inertia
+tensor and $\omega$ is the angular velocity.
+
+We can assume that the rocket is symmetrical so $I_x=I_y$ and we could
+calculate the $I_z$ but we would see that if the rocket is long but slim it
+tends to be small. We consider as well that the pitch and yaw are coupled but
+the roll isn't coupled with the rest.
+
+We now find thoses equations :
+\begin{gather*}
+    \begin{cases}
+        r_x = I_x \dot{\omega}_x - (I_x - I_z)\omega_y \omega_z \\
+        r_y = I_x \dot{\omega}_y - (I_z - I_x)\omega_z \omega_x \\
+        r_z = I_z \dot{\omega}_z
+    \end{cases}
+\end{gather*}
+
+We can integrate those equations into the simulation like this:
+
+\begin{align*}
+    \dot{\omega}_x & = \frac{1}{I_x}(r_x + (I_x - I_z)\omega_y \omega_z) \\
+    \dot{\omega}_y & = \frac{1}{I_x}(r_y + (I_z - I_x)\omega_z \omega_x) \\
+    \dot{\omega}_z & = \frac{I_z}r_z                                     \\
+\end{align*}
+
+And we can integrate them over time to get orientation rates like this :
+
+\begin{gather*}
+    \dot{\omega}_i(t + dt) = \omega_i(t) + \dot{\omega}_i dt
+\end{gather*}
+
+Because we use Euler's equations, we encounter a problem known as the gimbal
+lock. This happens as two rotation axes become aligned. Because we are in a 3D
+space instead of a 4D space like for quaternions, we can't differentiate
+between those two axes and so we lose a DoF as long as those axes are merged.
+
+We now need to talk about a problem to determine our moments of inertia for our rocket.
+These moments are governed by those equations:
+
+\begin{align*}
+    I_x = I_y & = \frac{1}{12} \times m(r^3 + L^2)I_z \\
+              & = \frac{1}{2} \times mr^2             \\
+\end{align*}
+with $m$ the weight, $r$ the radius and $L$ the length.
+Our weight goes from around 1690g to 1350g so a loss of about 20\% the total initial
+weight which isn't negligeable. To simplify our equation with a linear interpolation
+to these equations which are much simpler to implement into our simulation:
+
+\begin{align*}
+    I_x(t) = I_y(t) & = I_{x, dry} + \frac{1}{12}m_{\text{fuel}}(t) \times L^2_{\text{motor}} + m_{\text{fuel}}(t)dt^2 \times I_z(t) \\
+                    & = I_{z, dry} + \frac{1}{8} \times m_{\text{fuel}}(t) \times D^2                                                \\
+\end{align*}
+
+With $m$ fuel the remaining fuel at the instant t, $D$ the diameter of the rocket and $L$
+motor the length of the motor. Now that we have our rotational d Iynamic, we can calculate
+Euler Angle Kinematics which is used to convert our angular velocities in our body frame
+referential to Euler angle rates. To do this we use this transformation:
+
+\begin{gather*}
+    \begin{bmatrix}
+        \dot{\Omega} \\
+        \dot{\Theta} \\
+        \dot{\Psi}   \\
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 & \sin{\Phi} \times \tan{\Theta}  & \cos{\Phi} \times \tan{\Theta}  \\
+        0 & \cos{\Phi}                      & -\sin{\Phi}                     \\
+        0 & \frac{\sin{\Phi}}{\cos{\Theta}} & \frac{\cos{\Phi}}{\cos{\Theta}} \\
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+        \omega_x \\
+        \omega_y \\
+        \omega_z \\
+    \end{bmatrix}
+\end{gather*}
